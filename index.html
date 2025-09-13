@@ -18,9 +18,7 @@
     <a class="brand" href="#home">Jesse Adams</a>
     <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
     <nav class="site-nav" aria-label="Primary">
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
       <a class="btn small" href="assets/Jesse_Adams_Resume.pdf" target="_blank" rel="noopener">Resume</a>
     </nav>
   </header>
@@ -28,39 +26,25 @@
   <main id="home" class="hero">
     <div class="hero-inner">
       <h1>Game Developer & UI Programmer</h1>
-      <p class="lead">
-        I build polished, responsive game systems—from save/load persistence and HUDs to AI behaviors—in Unreal Engine and C++.
-      </p>
-      <div class="cta">
-        <a class="btn" href="#projects">View Projects</a>
-        <a class="btn ghost" href="#contact">Get in Touch</a>
-      </div>
-      <ul class="quick-tags" aria-label="Core skills">
-        <li>Unreal Engine 5</li>
-        <li>C++</li>
-        <li>UI/UX</li>
-        <li>Gameplay Systems</li>
-        <li>Git/GitHub</li>
-      </ul>
+      <p class="lead">I build polished, responsive game systems—from save/load persistence and HUDs to AI behaviors—in Unreal Engine and C++.</p>
+      <div class="cta"><a class="btn" href="#projects">View Projects</a><a class="btn ghost" href="#contact">Get in Touch</a></div>
+      <ul class="quick-tags" aria-label="Core skills"><li>Unreal Engine 5</li><li>C++</li><li>UI/UX</li><li>Gameplay Systems</li><li>Git/GitHub</li></ul>
     </div>
   </main>
 
   <section id="projects" class="section">
-    <div class="section-head">
-      <h2>Selected Projects</h2>
-      <p>Case studies with short write-ups. Each card links to details, code, or builds if available.</p>
-    </div>
-
+    <div class="section-head"><h2>Selected Projects</h2><p>Case studies with short write-ups. Each card links to details, code, or builds if available.</p></div>
     <div class="grid projects">
       <article class="card">
         <img src="assets/thumb_save_load.png" alt="Save/Load UI System thumbnail">
         <div class="card-body">
           <h3>Save/Load UI & Persistence (UE5 C++)</h3>
           <p>A robust slot-based save system with rename flow, date/time metadata, and cross-level persistence. Rebuilt from Blueprint to pure C++ for stability and debug visibility.</p>
+          <img class="wide-img" src="assets/save_load_ui.png" alt="Save/Load UI with slot rename and date/time metadata">
           <ul class="pill-list"><li>C++</li><li>Unreal UMG</li><li>Data Persistence</li></ul>
           <div class="card-actions">
-            <a class="btn small" href="#" aria-disabled="true">Case Study (coming soon)</a>
-            <a class="btn small ghost" href="#" aria-disabled="true">Demo</a>
+            <a class="btn small" href="projects/save-load.html">Case Study</a>
+            <a class="btn small ghost" href="https://rokanhellhound1.itch.io/burn-your-bacon" target="_blank" rel="noopener">Demo</a>
           </div>
         </div>
       </article>
@@ -72,8 +56,8 @@
           <p>An asynchronous overlay/HUD pipeline with resolution-aware scaling, dynamic text, and a clean API for gameplay teams.</p>
           <ul class="pill-list"><li>Rendering</li><li>UI/UX</li><li>Scalability</li></ul>
           <div class="card-actions">
-            <a class="btn small" href="#" aria-disabled="true">Write-up</a>
-            <a class="btn small ghost" href="#" aria-disabled="true">Video</a>
+            <a class="btn small" href="projects/hud.html">Case Study</a>
+            <a class="btn small ghost" href="https://rokanhellhound1.itch.io/burn-your-bacon" target="_blank" rel="noopener">Demo</a>
           </div>
         </div>
       </article>
@@ -85,21 +69,21 @@
           <p>Modular AI tasks for patrol, pursue, and attack, with animation-driven reload and damage events. Converted Blueprint logic to C++ tasks and interfaces.</p>
           <ul class="pill-list"><li>Behavior Trees</li><li>C++</li><li>Gameplay</li></ul>
           <div class="card-actions">
-            <a class="btn small" href="#" aria-disabled="true">Code Snippets</a>
-            <a class="btn small ghost" href="#" aria-disabled="true">Demo</a>
+            <a class="btn small" href="projects/ai.html">Case Study</a>
+            <a class="btn small ghost" href="https://rokanhellhound1.itch.io/burn-your-bacon" target="_blank" rel="noopener">Demo</a>
           </div>
         </div>
       </article>
 
       <article class="card">
-        <img src="assets/thumb_maybb.png" alt="MAYBB thumbnail">
+        <img src="assets/thumb_maybb.png" alt="May All Your Bacon Burn thumbnail">
         <div class="card-body">
           <h3>May All Your Bacon Burn</h3>
           <p>Team capstone: systems programming, menu flows, and polished player feedback (health, score, tooltips).</p>
           <ul class="pill-list"><li>Team Project</li><li>UI/UX</li><li>Systems</li></ul>
           <div class="card-actions">
-            <a class="btn small" href="#" aria-disabled="true">Overview</a>
-            <a class="btn small ghost" href="#" aria-disabled="true">Itch.io</a>
+            <a class="btn small" href="projects/maybb.html">Overview</a>
+            <a class="btn small ghost" href="https://rokanhellhound1.itch.io/burn-your-bacon" target="_blank" rel="noopener">Itch.io</a>
           </div>
         </div>
       </article>
@@ -107,28 +91,19 @@
   </section>
 
   <section id="about" class="section alt">
-    <div class="section-head">
-      <h2>About</h2>
-      <p>Father, builder, and lifelong learner—transitioning from the labor industry to technology through formal education and self-teaching.</p>
-    </div>
+    <div class="section-head"><h2>About</h2><p>Father, builder, and lifelong learner—transitioning from the labor industry to technology through formal education and self-teaching.</p></div>
     <div class="about-wrap">
       <div class="about-text">
         <p>I specialize in turning feature ideas into reliable, testable systems players actually feel—HUDs, menus, persistence, and input/UI flows. I’m comfortable hopping between C++ gameplay code and UMG/UX polish.</p>
         <p><strong>Education:</strong> B.S. in Game Development (Oct 2025) — Full Sail University. Coursework in algorithms, engine workflows, UI/UX, and team production.</p>
         <p><strong>Tools:</strong> Unreal Engine, Visual Studio, Git/GitHub, Perforce, Figma, Photoshop.</p>
       </div>
-      <ul class="skills">
-        <li>C++</li><li>Unreal UMG</li><li>Gameplay Systems</li><li>AI Tasks</li><li>Data Persistence</li>
-        <li>UI/UX</li><li>Version Control</li><li>Team Production</li>
-      </ul>
+      <ul class="skills"><li>C++</li><li>Unreal UMG</li><li>Gameplay Systems</li><li>AI Tasks</li><li>Data Persistence</li><li>UI/UX</li><li>Version Control</li><li>Team Production</li></ul>
     </div>
   </section>
 
   <section id="contact" class="section">
-    <div class="section-head">
-      <h2>Contact</h2>
-      <p>Reach out for collaboration, roles, or to chat about game systems and UI.</p>
-    </div>
+    <div class="section-head"><h2>Contact</h2><p>Reach out for collaboration, roles, or to chat about game systems and UI.</p></div>
     <div class="contact-cards">
       <a class="card link-card" href="mailto:echo@example.com"><h3>Email</h3><p>echo@example.com</p></a>
       <a class="card link-card" href="https://www.linkedin.com/" target="_blank" rel="noopener"><h3>LinkedIn</h3><p>Connect on LinkedIn</p></a>
@@ -136,9 +111,7 @@
     </div>
   </section>
 
-  <footer class="site-footer">
-    <p>&copy; 2025 Jesse “Echo” Adams · Built with HTML/CSS/JS · Deployed on GitHub Pages</p>
-  </footer>
+  <footer class="site-footer"><p>&copy; 2025 Jesse “Echo” Adams · Built with HTML/CSS/JS · Deployed on GitHub Pages</p></footer>
   <script src="script.js"></script>
 </body>
 </html>
