@@ -353,22 +353,5 @@ a {
         grid-template-columns: 1fr;
     }
 }
-/* ================================
-   Case Study Cards
-================================ */
-.case-card {
-    background: var(--card);
-    border: 1px solid rgba(255,255,255,.06);
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-    padding: 22px;
-    margin-bottom: 24px;
-    text-align: center;
-}
-
-    .case-card ul {
-        list-style-position: inside;
-        padding: 0;
-    }
 
 /* style.css END */
