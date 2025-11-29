@@ -13,6 +13,6 @@ wwwroot\projects\ai.html
 wwwroot\projects\hud.html
 wwwroot\projects\maybb.html
 wwwroot\projects\save-load.html
+wwwroot\script.js
 wwwroot\style.css
 wwwroot\index.html
-wwwroot\script.js

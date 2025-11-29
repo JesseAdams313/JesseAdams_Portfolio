@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "wwwroot\\index.html",
               "ToolTip": "C:\\Users\\Jesse\\OneDrive\\Desktop\\CRR\\Portfolio\\Portfolio Repo\\jesse_portfolio_starter\\JesseAdams_Portfolio\\WebHost\\wwwroot\\index.html",
               "RelativeToolTip": "wwwroot\\index.html",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAgwHIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAgwGkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2025-11-29T03:32:43.697Z",
               "EditorCaption": ""
@@ -47,7 +47,8 @@
               "RelativeToolTip": "wwwroot\\script.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-29T02:48:41.557Z"
+              "WhenOpened": "2025-11-29T02:48:41.557Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -59,7 +60,8 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T02:25:44.941Z"
+              "WhenOpened": "2025-11-29T02:25:44.941Z",
+              "EditorCaption": ""
             }
           ]
         }
