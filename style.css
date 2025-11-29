@@ -411,5 +411,39 @@ a {
         color: var(--ink);
     }
 
+    /* Architecture diagram styling */
+    .arch-diagram {
+        background: #05080f;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 14px;
+        padding: 22px;
+        overflow-x: auto;
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 0.95rem;
+        line-height: 1.35;
+        color: #cfd6df;
+        margin-top: 18px;
+    }
+
+    /* Single pill badge (for System Architecture tags) */
+    .pill {
+        display: inline-block;
+        margin: 6px 6px 6px 0;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: .8rem;
+        font-weight: 700;
+        background: linear-gradient(135deg,#182541,#0b1420);
+        color: #bcd7ff;
+        border: 1px solid rgba(122,168,255,0.35);
+        box-shadow: 0 4px 10px rgba(90,169,255,.15);
+    }
+    .pill-row {
+        margin: 6px 0 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
 
 /* style.css END */
