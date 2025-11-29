@@ -1,0 +1,12 @@
+# Visual Studio junk
+.vs/
+bin/
+obj/
+
+# Build artifacts
+WebHost/bin/
+WebHost/obj/
+
+# OS files
+.DS_Store
+Thumbs.db
