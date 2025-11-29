@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebHost")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0480ccc8975135b23897205c13ba8e0d49d7cd17")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+733e167b83046de5c070d114dec3b4994abb2528")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
