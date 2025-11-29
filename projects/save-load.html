@@ -38,19 +38,21 @@
                 </p>
             </section>
 
+            <!-- HERO UI IMAGE -->
             <img src="../assets/save_load_menu2.png" alt="Save Slot UI" class="wide-img">
 
             <!-- =========================================
                  OVERVIEW
             ========================================= -->
             <section>
-
                 <h2>Project Overview</h2>
                 <p>
                     This project replaces Blueprint-based persistence with a professional-grade C++ system.
                     The save architecture was designed like a production feature — modular systems, clean APIs,
                     and complete UI separation from backend logic.
                 </p>
+
+                <img src="../assets/placeholder_overview.png" alt="Overview screenshot placeholder" class="wide-img">
 
                 <ul class="pill-list">
                     <li>Unreal Engine 5</li>
@@ -60,14 +62,12 @@
                     <li>Persistence</li>
                     <li>UX Design</li>
                 </ul>
-
             </section>
 
             <!-- =========================================
                  DESIGN GOALS
             ========================================= -->
             <section>
-
                 <h2>Design Goals</h2>
                 <ul>
                     <li>Professional-feeling save UI</li>
@@ -78,15 +78,14 @@
                     <li>Full C++ implementation</li>
                 </ul>
 
+                <img src="../assets/placeholder_design_goals.png" alt="Design goals placeholder UI" class="wide-img">
             </section>
 
             <!-- =========================================
                  ARCHITECTURE
             ========================================= -->
             <section>
-
                 <h2>System Architecture</h2>
-
                 <p>
                     The save system is built using clean separation of responsibility across three layers:
                 </p>
@@ -99,19 +98,18 @@
 
                 <img src="../assets/save_architecture.png" alt="Diagram of Save System Architecture" class="wide-img">
 
+                <img src="../assets/placeholder_manager_class.png" alt="Save Manager class screenshot placeholder" class="wide-img">
+
                 <p>
                     This isolation ensures safe updates to UI without risking data loss or logic errors.
                 </p>
-
             </section>
 
             <!-- =========================================
                  SLOT DETAILS
             ========================================= -->
             <section>
-
                 <h2>Slot System & Metadata</h2>
-
                 <p>
                     Each save slot includes more than raw data — it contains presentation-friendly information:
                 </p>
@@ -126,15 +124,14 @@
 
                 <img src="../assets/save_slot_details.png" alt="Save slots showing timestamp and location data" class="wide-img">
 
+                <img src="../assets/placeholder_slot_state.png" alt="Slot rename and overwrite flow placeholder" class="wide-img">
             </section>
 
             <!-- =========================================
                  C++ EXAMPLE
             ========================================= -->
             <section>
-
                 <h2>C++ Highlight</h2>
-
                 <p>
                     All saving and loading is controlled through the Save Manager class:
                 </p>
@@ -147,22 +144,21 @@ UGameplayStatics::SaveGameToSlot(CurrentSave, SlotName, 0);
 UGameplayStatics::LoadGameFromSlot(SlotName, 0);
 </code></pre>
 
+                <img src="../assets/placeholder_cpp.png" alt="C++ Save Manager code placeholder" class="wide-img">
+
                 <ul>
                     <li>Custom USaveGame class</li>
                     <li>Slot auto-detection</li>
                     <li>Load validation</li>
                     <li>Error-safe routines</li>
                 </ul>
-
             </section>
 
             <!-- =========================================
                  UI FOCUS
             ========================================= -->
             <section>
-
                 <h2>UI / UX Design</h2>
-
                 <ul>
                     <li>Readable typography</li>
                     <li>High-contrast cards</li>
@@ -173,14 +169,17 @@ UGameplayStatics::LoadGameFromSlot(SlotName, 0);
 
                 <img src="../assets/save_ui_states.png" alt="Save menu UI interaction states" class="wide-img">
 
+                <img src="../assets/placeholder_controller_nav.png" alt="Controller navigation placeholder" class="wide-img">
             </section>
 
             <!-- =========================================
                  WHY C++
             ========================================= -->
             <section>
-
                 <h2>Why C++?</h2>
+
+                <img src="../assets/placeholder_blueprint_vs_cpp.png" alt="Blueprint vs C++ comparison placeholder" class="wide-img">
+
                 <ul>
                     <li>Lower overhead</li>
                     <li>Stronger debugging tools</li>
@@ -194,23 +193,22 @@ UGameplayStatics::LoadGameFromSlot(SlotName, 0);
                  TAKEAWAYS
             ========================================= -->
             <section>
-
                 <h2>What I Learned</h2>
+                <img src="../assets/placeholder_lessons.png" alt="Lessons learned placeholder" class="wide-img">
                 <ul>
                     <li>Persistence is architecture, not just storage</li>
                     <li>UX matters even in backend systems</li>
                     <li>Clean separation prevents messy refactors</li>
                     <li>Visual clarity builds trust</li>
                 </ul>
-
             </section>
 
             <!-- =========================================
                  FUTURE FEATURES
             ========================================= -->
             <section>
-
                 <h2>Future Improvements</h2>
+                <img src="../assets/placeholder_future.png" alt="Future features placeholder" class="wide-img">
                 <ul>
                     <li>Cloud saves</li>
                     <li>Profiles</li>
@@ -218,7 +216,6 @@ UGameplayStatics::LoadGameFromSlot(SlotName, 0);
                     <li>Compression</li>
                     <li>Threading</li>
                 </ul>
-
             </section>
 
             <!-- =========================================
