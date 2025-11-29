@@ -1,4 +1,4 @@
-
+﻿
 /* style.css START */
 
 /* ================================
@@ -13,6 +13,11 @@
     --accent: #7bf1a8;
     --card: #0f141b;
     --shadow: 0 6px 24px rgba(0,0,0,.25);
+    /* ✅ UNIFIED PILL SYSTEM */
+    --pill-bg: linear-gradient(135deg,#182541,#0b1420);
+    --pill-border: rgba(122,168,255,0.35);
+    --pill-glow: 0 0 0 1px rgba(122,168,255,0.15), 0 6px 18px rgba(90,169,255,.25);
+    --pill-text: #bcd7ff;
 }
 
 * {
@@ -144,22 +149,42 @@ a {
     margin-bottom: 14px;
 }
 
-.quick-tags {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0;
-    list-style: none;
-    color: var(--muted);
+/* ✅ UNIFIED PILL STYLING */
+.quick-tags li,
+.pill-list li,
+.skills-list li,
+.pill {
+    display: inline-block;
+    background: var(--pill-bg);
+    color: var(--pill-text);
+    border: 1px solid var(--pill-border);
+    box-shadow: var(--pill-glow);
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: .2px;
 }
 
-    .quick-tags li {
-        background: rgba(255,255,255,.06);
-        border: 1px solid rgba(255,255,255,.08);
-        padding: 6px 10px;
-        border-radius: 999px;
-    }
+/* ✅ SIZE CONTROL */
+.quick-tags li {
+    padding: 6px 12px;
+    font-size: .8rem;
+}
+
+.pill-list li {
+    padding: 4px 10px;
+    font-size: .85rem;
+}
+
+.skills-list li {
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+
+.pill {
+    padding: 6px 14px;
+    font-size: .8rem;
+    margin: 6px 6px 6px 0;
+}
 
 /* ================================
    Sections & Projects
@@ -226,24 +251,6 @@ a {
         color: var(--muted);
     }
 
-.pill-list {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    padding: 0;
-    list-style: none;
-    margin: 0 0 12px;
-}
-
-    .pill-list li {
-        background: #0b1420;
-        border: 1px solid rgba(255,255,255,.08);
-        padding: 4px 8px;
-        border-radius: 999px;
-        font-size: .85rem;
-        color: var(--ink);
-    }
-
 .card-actions {
     display: flex;
     gap: 8px;
@@ -286,13 +293,6 @@ a {
     gap: 8px;
     flex-wrap: wrap;
 }
-
-    .skills-list li {
-        background: #0b1420;
-        border: 1px solid rgba(255,255,255,.08);
-        padding: 8px 10px;
-        border-radius: 10px;
-    }
 
 /* ================================
    Contact & Footer
@@ -357,14 +357,11 @@ a {
 /* ================================
    Save/Load Case Study Styling
    ================================ */
-
-/* Wrapper for case study layout */
 .case-wrapper {
     max-width: 980px;
     margin: 0 auto;
 }
 
-/* Center & box each section */
 .section > .case-wrapper > section {
     max-width: 880px;
     margin: 0 auto 42px auto;
@@ -375,19 +372,16 @@ a {
     box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
-    /* Prevent heading collision */
     .section > .case-wrapper > section h2 {
         margin-top: 0;
     }
 
-    /* Image framing */
     .section > .case-wrapper > section img.wide-img {
         margin-top: 16px;
         border-radius: 10px;
         border: 1px solid rgba(255,255,255,0.06);
     }
 
-    /* List readability */
     .section > .case-wrapper > section ul {
         padding-left: 20px;
     }
@@ -396,7 +390,6 @@ a {
             margin-bottom: 6px;
         }
 
-    /* Code block styling */
     .section > .case-wrapper > section pre {
         background: #070b11;
         padding: 16px;
@@ -405,45 +398,23 @@ a {
         border: 1px solid rgba(255,255,255,0.08);
     }
 
-    /* Paragraph spacing */
     .section > .case-wrapper > section p {
         margin-bottom: 12px;
         color: var(--ink);
     }
 
-    /* Architecture diagram styling */
-    .arch-diagram {
-        background: #05080f;
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 14px;
-        padding: 22px;
-        overflow-x: auto;
-        font-family: "Consolas", "Courier New", monospace;
-        font-size: 0.95rem;
-        line-height: 1.35;
-        color: #cfd6df;
-        margin-top: 18px;
-    }
-
-    /* Single pill badge (for System Architecture tags) */
-    .pill {
-        display: inline-block;
-        margin: 6px 6px 6px 0;
-        padding: 6px 14px;
-        border-radius: 999px;
-        font-size: .8rem;
-        font-weight: 700;
-        background: linear-gradient(135deg,#182541,#0b1420);
-        color: #bcd7ff;
-        border: 1px solid rgba(122,168,255,0.35);
-        box-shadow: 0 4px 10px rgba(90,169,255,.15);
-    }
-    .pill-row {
-        margin: 6px 0 16px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
+.arch-diagram {
+    background: #05080f;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 22px;
+    overflow-x: auto;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    color: #cfd6df;
+    margin-top: 18px;
+}
 
 
 /* style.css END */
