@@ -28,3 +28,4 @@ C:\Users\Jesse\OneDrive\Desktop\CRR\Portfolio\Portfolio Repo\jesse_portfolio_sta
 C:\Users\Jesse\OneDrive\Desktop\CRR\Portfolio\Portfolio Repo\jesse_portfolio_starter\JesseAdams_Portfolio\WebHost\obj\Debug\net8.0\WebHost.pdb
 C:\Users\Jesse\OneDrive\Desktop\CRR\Portfolio\Portfolio Repo\jesse_portfolio_starter\JesseAdams_Portfolio\WebHost\obj\Debug\net8.0\WebHost.genruntimeconfig.cache
 C:\Users\Jesse\OneDrive\Desktop\CRR\Portfolio\Portfolio Repo\jesse_portfolio_starter\JesseAdams_Portfolio\WebHost\obj\Debug\net8.0\ref\WebHost.dll
+C:\Users\Jesse\OneDrive\Desktop\CRR\Portfolio\Portfolio Repo\jesse_portfolio_starter\JesseAdams_Portfolio\WebHost\bin\Debug\net8.0\WebHost.staticwebassets.runtime.json

@@ -1,0 +1,17 @@
+wwwroot\index.html
+wwwroot\script.js
+wwwroot\style.css
+wwwroot\assets\ai_demo.png
+wwwroot\assets\favicon.png
+wwwroot\assets\hud_overlay.png
+wwwroot\assets\maybb_case.png
+wwwroot\assets\og_image.png
+wwwroot\assets\save_load_ui.png
+wwwroot\assets\thumb_ai.png
+wwwroot\assets\thumb_maybb.png
+wwwroot\assets\thumb_overlay.png
+wwwroot\assets\thumb_save_load.png
+wwwroot\projects\ai.html
+wwwroot\projects\hud.html
+wwwroot\projects\maybb.html
+wwwroot\projects\save-load.html
