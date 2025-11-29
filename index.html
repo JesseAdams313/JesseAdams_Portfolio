@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ================================
+         Metadata & SEO
+         ================================ -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Jesse “Echo” Adams | Game Developer & UI Programmer</title>
@@ -11,14 +14,31 @@
     <meta property="og:description" content="Projects, case studies, and contact info." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="assets/og_image.png" />
+
+    <!-- ================================
+         Favicon & Fonts
+         ================================ -->
     <link rel="icon" href="assets/favicon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <!-- ================================
+         CSS Stylesheet
+         ================================ -->
     <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+    <!-- ================================
+         HEADER / NAVIGATION
+         ================================ -->
     <header class="site-header">
+        <!-- Brand / Logo -->
         <a class="brand" href="#home">Jesse Adams</a>
+
+        <!-- Mobile nav toggle button -->
         <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+
+        <!-- Main navigation -->
         <nav class="site-nav" aria-label="Primary">
             <a href="#projects">Projects</a>
             <a href="#about">About</a>
@@ -27,18 +47,28 @@
         </nav>
     </header>
 
+    <!-- ================================
+         HERO SECTION
+         ================================ -->
     <main id="home" class="hero">
         <div class="hero-inner">
+            <!-- Main Heading -->
             <h1>Game Developer & UI Programmer</h1>
+
+            <!-- Hero description / lead text -->
             <p class="lead">
                 I create player-focused game systems and interfaces in Unreal Engine 5 and C++.
                 From modular HUDs and interactive menus to AI behaviors and save/load systems, I design features that are both robust and polished.
                 With hands-on experience building capstone and team projects, I collaborate closely with designers and artists to deliver seamless, intuitive gameplay experiences.
             </p>
+
+            <!-- Call-to-action buttons -->
             <div class="cta">
                 <a class="btn" href="#projects">View Projects</a>
                 <a class="btn ghost" href="#contact">Get in Touch</a>
             </div>
+
+            <!-- Quick skills tags -->
             <ul class="quick-tags" aria-label="Core skills">
                 <li>Unreal Engine 5</li>
                 <li>C++ Gameplay Systems</li>
@@ -50,13 +80,19 @@
         </div>
     </main>
 
+    <!-- ================================
+         PROJECTS SECTION
+         ================================ -->
     <section id="projects" class="section">
         <div class="section-head">
             <h2>Selected Projects</h2>
             <p>Case studies with short write-ups. Each card links to details, code, or builds if available.</p>
         </div>
+
+        <!-- Projects Grid -->
         <div class="grid projects">
-            <!-- Save/Load Project -->
+
+            <!-- Project 1: Save/Load UI & Persistence -->
             <article class="card">
                 <img src="assets/thumb_save_load.png" alt="Save/Load UI System thumbnail">
                 <div class="card-body">
@@ -74,7 +110,8 @@
                     </div>
                 </div>
             </article>
-            <!-- HUD Project -->
+
+            <!-- Project 2: HUD & Overlay System -->
             <article class="card">
                 <img src="assets/thumb_overlay.png" alt="HUD/Overlay thumbnail">
                 <div class="card-body">
@@ -91,7 +128,8 @@
                     </div>
                 </div>
             </article>
-            <!-- AI Project -->
+
+            <!-- Project 3: AI Behavior & Combat -->
             <article class="card">
                 <img src="assets/thumb_ai.png" alt="AI Behavior thumbnail">
                 <div class="card-body">
@@ -108,7 +146,8 @@
                     </div>
                 </div>
             </article>
-            <!-- Capstone -->
+
+            <!-- Project 4: Capstone Project -->
             <article class="card">
                 <img src="assets/thumb_maybb.png" alt="May All Your Bacon Burn thumbnail">
                 <div class="card-body">
@@ -125,28 +164,33 @@
                     </div>
                 </div>
             </article>
+
         </div>
     </section>
 
+    <!-- ================================
+         ABOUT SECTION
+         ================================ -->
     <section id="about" class="section alt">
         <div class="section-head">
             <h2>About</h2>
             <p>Father, builder, and lifelong learner—transitioning from the labor industry to technology through formal education and self-teaching.</p>
         </div>
+
         <div class="about-wrap">
+            <!-- About text -->
             <div class="about-text">
                 <p>
-                    <br />
-                    <br />
-                    <br />
                     I specialize in turning feature ideas into reliable, testable systems players actually feel—HUDs, menus, persistence, and input/UI flows.
                     I’m comfortable hopping between C++ gameplay code and UMG/UX polish, collaborating with teams to deliver polished player experiences.
                 </p>
                 <p><strong>Education:</strong> B.S. in Game Development (Oct 2025) — Full Sail University</p>
                 <p><strong>Experience:</strong> Capstone and team projects including modular AI, HUDs, menus, and save/load systems. Skilled in Agile workflows and project collaboration.</p>
             </div>
+
+            <!-- Skills list -->
             <div class="skills-wrap">
-                <h3>   -Skills-</h3>
+                <h3>Skills</h3>
                 <ul class="skills-list">
                     <li><strong>Programming:</strong> C++, C#</li>
                     <li><strong>Game Engines:</strong> Unreal Engine 5, Unity3D</li>
@@ -159,11 +203,16 @@
         </div>
     </section>
 
+    <!-- ================================
+         CONTACT SECTION
+         ================================ -->
     <section id="contact" class="section">
         <div class="section-head">
             <h2>Contact</h2>
             <p>Reach out for collaboration, roles, or to chat about game systems and UI.</p>
         </div>
+
+        <!-- Contact cards -->
         <div class="contact-cards">
             <a class="card link-card" href="mailto:JesseAdams313@gmail.com">
                 <h3>Email</h3><p>JesseAdams313@gmail.com</p>
@@ -177,13 +226,18 @@
         </div>
     </section>
 
+    <!-- ================================
+         FOOTER
+         ================================ -->
     <footer class="site-footer">
         <p>&copy; <span id="year"></span> Jesse “Echo” Adams · Built with HTML/CSS/JS · Deployed on GitHub Pages</p>
     </footer>
 
+    <!-- ================================
+         JAVASCRIPT
+         ================================ -->
     <script src="script.js"></script>
 </body>
 </html>
-
 
 <!-- index.html END -->
