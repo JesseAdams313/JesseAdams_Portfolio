@@ -354,4 +354,62 @@ a {
     }
 }
 
+/* ================================
+   Save/Load Case Study Styling
+   ================================ */
+
+/* Wrapper for case study layout */
+.case-wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+/* Center & box each section */
+.section > .case-wrapper > section {
+    max-width: 880px;
+    margin: 0 auto 42px auto;
+    padding: 26px 28px;
+    background: rgba(255,255,255,0.015);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+    /* Prevent heading collision */
+    .section > .case-wrapper > section h2 {
+        margin-top: 0;
+    }
+
+    /* Image framing */
+    .section > .case-wrapper > section img.wide-img {
+        margin-top: 16px;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* List readability */
+    .section > .case-wrapper > section ul {
+        padding-left: 20px;
+    }
+
+        .section > .case-wrapper > section ul li {
+            margin-bottom: 6px;
+        }
+
+    /* Code block styling */
+    .section > .case-wrapper > section pre {
+        background: #070b11;
+        padding: 16px;
+        border-radius: 10px;
+        overflow-x: auto;
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Paragraph spacing */
+    .section > .case-wrapper > section p {
+        margin-bottom: 12px;
+        color: var(--ink);
+    }
+
+
 /* style.css END */
