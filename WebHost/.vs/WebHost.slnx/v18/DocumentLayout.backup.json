@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Jesse\\OneDrive\\Desktop\\CRR\\Portfolio\\Portfolio Repo\\jesse_portfolio_starter\\JesseAdams_Portfolio\\WebHost\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B86D3D7C-D172-9099-36FA-9FF183BEF565}|WebHost.csproj|c:\\users\\jesse\\onedrive\\desktop\\crr\\portfolio\\portfolio repo\\jesse_portfolio_starter\\jesseadams_portfolio\\webhost\\wwwroot\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B86D3D7C-D172-9099-36FA-9FF183BEF565}|WebHost.csproj|solutionrelative:wwwroot\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B86D3D7C-D172-9099-36FA-9FF183BEF565}|WebHost.csproj|c:\\users\\jesse\\onedrive\\desktop\\crr\\portfolio\\portfolio repo\\jesse_portfolio_starter\\jesseadams_portfolio\\webhost\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B86D3D7C-D172-9099-36FA-9FF183BEF565}|WebHost.csproj|solutionrelative:wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B86D3D7C-D172-9099-36FA-9FF183BEF565}|WebHost.csproj|c:\\users\\jesse\\onedrive\\desktop\\crr\\portfolio\\portfolio repo\\jesse_portfolio_starter\\jesseadams_portfolio\\webhost\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B86D3D7C-D172-9099-36FA-9FF183BEF565}|WebHost.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -19,6 +27,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "script.js",
+              "DocumentMoniker": "C:\\Users\\Jesse\\OneDrive\\Desktop\\CRR\\Portfolio\\Portfolio Repo\\jesse_portfolio_starter\\JesseAdams_Portfolio\\WebHost\\wwwroot\\script.js",
+              "RelativeDocumentMoniker": "wwwroot\\script.js",
+              "ToolTip": "C:\\Users\\Jesse\\OneDrive\\Desktop\\CRR\\Portfolio\\Portfolio Repo\\jesse_portfolio_starter\\JesseAdams_Portfolio\\WebHost\\wwwroot\\script.js",
+              "RelativeToolTip": "wwwroot\\script.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-29T02:48:41.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\Jesse\\OneDrive\\Desktop\\CRR\\Portfolio\\Portfolio Repo\\jesse_portfolio_starter\\JesseAdams_Portfolio\\WebHost\\wwwroot\\index.html",
+              "RelativeDocumentMoniker": "wwwroot\\index.html",
+              "ToolTip": "C:\\Users\\Jesse\\OneDrive\\Desktop\\CRR\\Portfolio\\Portfolio Repo\\jesse_portfolio_starter\\JesseAdams_Portfolio\\WebHost\\wwwroot\\index.html",
+              "RelativeToolTip": "wwwroot\\index.html",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAgwHoAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-11-29T02:33:56.847Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Jesse\\OneDrive\\Desktop\\CRR\\Portfolio\\Portfolio Repo\\jesse_portfolio_starter\\JesseAdams_Portfolio\\WebHost\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
