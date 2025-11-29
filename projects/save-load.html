@@ -96,13 +96,75 @@
                     <li><strong>Data Layer</strong> — Custom SaveGame class</li>
                 </ul>
 
-                <img src="../assets/save_architecture.png" alt="Diagram of Save System Architecture" class="wide-img">
 
                 <img src="../assets/codeCoreIO.png" alt="Save Manager class screenshot placeholder" class="wide-img">
 
                 <p>
                     This isolation ensures safe updates to UI without risking data loss or logic errors.
                 </p>
+
+
+                <pre><code>
+
+                ┌──────────────────────────────┐
+                │            UI                │
+                │  Save Menu Widgets (UMG)     │
+                │  Slot Buttons / Rename / UI  │
+                └───────────────┬──────────────┘
+                │ Blueprint calls
+                ▼
+                ┌──────────────────────────────┐
+                │        Save Subsystem         │
+                │     (USaveSubsystem)          │
+                │--------------------------------
+                │ - SaveToSlotSync()            │
+                │ - LoadFromSlotSync()          │
+                │ - DeleteSlot()                │
+                │ - CopySlot()                  │
+                │ - RenameSlot()                │
+                │ - PeekSummary()               │
+                │ - BeginSessionTimer()         │
+                │ - MarkPickupCollected()       │
+                │--------------------------------
+                │ Manages: Current Save Object  │
+                │ Fires: OnSaved / OnLoaded     │
+                └───────────────┬──────────────┘
+                │
+                Unreal Save API (Engine)
+                │
+                ▼
+                ┌──────────────────────────────┐
+                │        UCodeSaveGame          │
+                │        (Save Data Layer)      │
+                │--------------------------------
+                │ - PlayerScore                 │
+                │ - KeysCollected               │
+                │ - LastLevel                   │
+                │ - DisplayName                 │
+                │ - TimePlayedSeconds           │
+                │ - SavedItems[]                │
+                │ - PotionStates (TMap)         │
+                │ - CollectedPickupsByLevel     │
+                └───────────────┬──────────────┘
+                │
+                Serialized Save File
+                │
+                ▼
+                ┌──────────────────────────────┐
+                │          Disk Storage         │
+                │     .sav files per slot       │
+                │   (PZ_Slot_0, PZ_Slot_1...)    │
+                └──────────────────────────────┘
+
+                </code></pre>
+                <p class="caption">
+                    This diagram shows the complete architecture of the Save/Load system. The UI communicates with the Save Subsystem,
+                    which owns all game persistence logic. That subsystem manages a SaveGame data object that is serialized to disk
+                    using Unreal’s engine API. This clean separation ensures data integrity, scalability, and UI safety.
+                </p>
+                <!--   <img src="../assets/save_architecture.png" alt="Diagram of Save System Architecture" class="wide-img">   -->
+
+
             </section>
 
             <!-- =========================================
