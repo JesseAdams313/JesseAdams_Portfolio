@@ -22,213 +22,214 @@
     <main class="section">
 
         <!-- =========================================
-             INTRO / HERO
+             CENTERED PAGE WRAPPER (FIX)
         ========================================= -->
-        <section class="section-head">
-            <h1>Save & Load System — UE5 (C++)</h1>
-            <p class="lead">
-                A scalable, slot-based save system built entirely in Unreal Engine 5 using C++.
-                Designed for performance, extensibility, and clean UI interaction—supporting profile naming, metadata,
-                and persistent world state across levels.
-            </p>
-        </section>
+        <div style="max-width: 980px; margin: 0 auto;">
 
-        <img src="../assets/save_load_ui.png" alt="Save Slot UI" class="wide-img">
+            <!-- =========================================
+                 HERO / INTRO
+            ========================================= -->
+            <section class="section-head">
+                <h1>Save & Load System — Unreal Engine 5 (C++)</h1>
+                <p class="lead">
+                    A scalable, slot-based save system built entirely in C++ for Unreal Engine 5.
+                    Designed with performance, extensibility, and UI clarity in mind—supporting metadata,
+                    world persistence, and cross-session restoration.
+                </p>
+            </section>
 
-        <!-- =========================================
-             PROJECT OVERVIEW
-        ========================================= -->
-        <section>
+            <img src="../assets/save_load_ui.png" alt="Save Slot UI" class="wide-img">
 
-            <h2>Project Overview</h2>
-            <p>
-                This system was designed as a full replacement for Blueprint-based persistence logic.
-                The goal was to build a professional-grade save architecture that mimics production workflows:
-                clean APIs, modular components, and separation between UI, gameplay, and serialization logic.
-            </p>
+            <!-- =========================================
+                 OVERVIEW
+            ========================================= -->
+            <section>
 
-            <ul class="pill-list">
-                <li>Unreal Engine 5</li>
-                <li>C++</li>
-                <li>UMG</li>
-                <li>Serialization</li>
-                <li>Data Persistence</li>
-                <li>UI/UX Engineering</li>
-            </ul>
+                <h2>Project Overview</h2>
+                <p>
+                    This project replaces Blueprint-based persistence with a professional-grade C++ system.
+                    The save architecture was designed like a production feature — modular systems, clean APIs,
+                    and complete UI separation from backend logic.
+                </p>
 
-        </section>
+                <ul class="pill-list">
+                    <li>Unreal Engine 5</li>
+                    <li>C++</li>
+                    <li>UI Architecture</li>
+                    <li>Serialization</li>
+                    <li>Persistence</li>
+                    <li>UX Design</li>
+                </ul>
 
-        <!-- =========================================
-             DESIGN GOALS
-        ========================================= -->
-        <section>
+            </section>
 
-            <h2>Design Goals</h2>
-            <ul>
-                <li>Create a clean, intuitive UI that mirrors modern game save menus</li>
-                <li>Allow dynamic slot naming, overwriting, and deletion</li>
-                <li>Implement metadata such as timestamps and playtime</li>
-                <li>Ensure cross-level and cross-session persistence</li>
-                <li>Provide scalable architecture for future systems</li>
-                <li>Transition logic from Blueprint to native C++</li>
-            </ul>
+            <!-- =========================================
+                 DESIGN GOALS
+            ========================================= -->
+            <section>
 
-        </section>
+                <h2>Design Goals</h2>
+                <ul>
+                    <li>Professional-feeling save UI</li>
+                    <li>Slot naming, overwriting, and deletion</li>
+                    <li>Persistent world data across sessions</li>
+                    <li>Metadata visibility and clarity</li>
+                    <li>Scalable backend architecture</li>
+                    <li>Full C++ implementation</li>
+                </ul>
 
-        <!-- =========================================
-             SYSTEM ARCHITECTURE
-        ========================================= -->
-        <section>
+            </section>
 
-            <h2>System Architecture</h2>
+            <!-- =========================================
+                 ARCHITECTURE
+            ========================================= -->
+            <section>
 
-            <p>
-                The system is divided into three layers that communicate through defined interfaces:
-            </p>
+                <h2>System Architecture</h2>
 
-            <ul>
-                <li><strong>UI Layer</strong> — Save menu, slot widgets, input capture</li>
-                <li><strong>Manager Layer</strong> — Central Save Manager in C++</li>
-                <li><strong>Data Layer</strong> — Custom USaveGame subclass</li>
-            </ul>
+                <p>
+                    The save system is built using clean separation of responsibility across three layers:
+                </p>
 
-            <img src="../assets/save_architecture.png" alt="Save System Architecture Diagram" class="wide-img">
+                <ul>
+                    <li><strong>UI Layer</strong> — Slot widgets and input</li>
+                    <li><strong>Manager Layer</strong> — Central Save Manager</li>
+                    <li><strong>Data Layer</strong> — Custom SaveGame class</li>
+                </ul>
 
-            <p>
-                By separating UI from data access, the system avoids tight coupling—making it easier to update visual
-                designs without touching persistence code.
-            </p>
+                <img src="../assets/save_architecture.png" alt="Diagram of Save System Architecture" class="wide-img">
 
-        </section>
+                <p>
+                    This isolation ensures safe updates to UI without risking data loss or logic errors.
+                </p>
 
-        <!-- =========================================
-             SLOT SYSTEM
-        ========================================= -->
-        <section>
+            </section>
 
-            <h2>Slot System & Metadata</h2>
+            <!-- =========================================
+                 SLOT DETAILS
+            ========================================= -->
+            <section>
 
-            <p>
-                Each save slot stores more than just position data.
-                To improve usability and realism, each file includes:
-            </p>
+                <h2>Slot System & Metadata</h2>
 
-            <ul>
-                <li>Slot Name (Custom Input)</li>
-                <li>Creation Date & Time</li>
-                <li>Level Name</li>
-                <li>Playtime</li>
-                <li>Player Location (Transform)</li>
-            </ul>
+                <p>
+                    Each save slot includes more than raw data — it contains presentation-friendly information:
+                </p>
 
-            <img src="../assets/save_slot_details.png" alt="Slot details with timestamps" class="wide-img">
+                <ul>
+                    <li>Custom slot names</li>
+                    <li>Timestamps</li>
+                    <li>Level names</li>
+                    <li>Playtime</li>
+                    <li>World transform</li>
+                </ul>
 
-        </section>
+                <img src="../assets/save_slot_details.png" alt="Save slots showing timestamp and location data" class="wide-img">
 
-        <!-- =========================================
-             C++ IMPLEMENTATION
-        ========================================= -->
-        <section>
+            </section>
 
-            <h2>C++ Implementation Highlights</h2>
+            <!-- =========================================
+                 C++ EXAMPLE
+            ========================================= -->
+            <section>
 
-            <p>
-                The Save Manager acts as the system’s main controller.
-                It handles slot creation, loading, verification, and serialization.
-            </p>
+                <h2>C++ Highlight</h2>
+
+                <p>
+                    All saving and loading is controlled through the Save Manager class:
+                </p>
 
 <pre><code>
-// Example: Save Trigger
+// Save Trigger
 UGameplayStatics::SaveGameToSlot(CurrentSave, SlotName, 0);
+
+// Load Trigger
+UGameplayStatics::LoadGameFromSlot(SlotName, 0);
 </code></pre>
 
-            <ul>
-                <li>Custom SaveGame class</li>
-                <li>Dynamic slot discovery</li>
-                <li>Data validation before load</li>
-                <li>Async-safe file operations</li>
-            </ul>
+                <ul>
+                    <li>Custom USaveGame class</li>
+                    <li>Slot auto-detection</li>
+                    <li>Load validation</li>
+                    <li>Error-safe routines</li>
+                </ul>
 
-        </section>
+            </section>
 
-        <!-- =========================================
-             UI/UX FOCUS
-        ========================================= -->
-        <section>
+            <!-- =========================================
+                 UI FOCUS
+            ========================================= -->
+            <section>
 
-            <h2>UI / UX Design</h2>
+                <h2>UI / UX Design</h2>
 
-            <p>
-                The UI was intentionally built for readability and player trust:
-            </p>
+                <ul>
+                    <li>Readable typography</li>
+                    <li>High-contrast cards</li>
+                    <li>Selection feedback</li>
+                    <li>Delete confirmations</li>
+                    <li>Controller support</li>
+                </ul>
 
-            <ul>
-                <li>High contrast slot cards</li>
-                <li>Clear delete + overwrite warnings</li>
-                <li>Visual hierarchy for recent saves</li>
-                <li>Controller + mouse navigation</li>
-            </ul>
+                <img src="../assets/save_ui_states.png" alt="Save menu UI interaction states" class="wide-img">
 
-            <img src="../assets/save_ui_states.png" alt="UI states and hover interactions" class="wide-img">
+            </section>
 
-        </section>
+            <!-- =========================================
+                 WHY C++
+            ========================================= -->
+            <section>
 
-        <!-- =========================================
-             TECHNOLOGY REASONS
-        ========================================= -->
-        <section>
+                <h2>Why C++?</h2>
+                <ul>
+                    <li>Lower overhead</li>
+                    <li>Stronger debugging tools</li>
+                    <li>Scalability</li>
+                    <li>Cleaner UI binding</li>
+                    <li>Robust architecture</li>
+                </ul>
+            </section>
 
-            <h2>Why C++ Instead of Blueprint?</h2>
+            <!-- =========================================
+                 TAKEAWAYS
+            ========================================= -->
+            <section>
 
-            <ul>
-                <li>Better performance for IO-heavy operations</li>
-                <li>Improved debugging and breakpoint support</li>
-                <li>Scalable architecture for future features</li>
-                <li>Clear ownership patterns</li>
-                <li>Cleaner API exposure for designers</li>
-            </ul>
+                <h2>What I Learned</h2>
+                <ul>
+                    <li>Persistence is architecture, not just storage</li>
+                    <li>UX matters even in backend systems</li>
+                    <li>Clean separation prevents messy refactors</li>
+                    <li>Visual clarity builds trust</li>
+                </ul>
 
-        </section>
+            </section>
 
-        <!-- =========================================
-             LESSONS LEARNED
-        ========================================= -->
-        <section>
 
-            <h2>Key Takeaways</h2>
+            <!-- =========================================
+                 FUTURE FEATURES
+            ========================================= -->
+            <section>
 
-            <ul>
-                <li>UI-driven systems still benefit from backend architecture</li>
-                <li>Separation of concerns saves time long-term</li>
-                <li>C++ unlocks better debugging during bugs</li>
-                <li>Players notice polish in invisible systems</li>
-            </ul>
+                <h2>Future Improvements</h2>
+                <ul>
+                    <li>Cloud saves</li>
+                    <li>Profiles</li>
+                    <li>Screenshot thumbnails</li>
+                    <li>Compression</li>
+                    <li>Threading</li>
+                </ul>
 
-        </section>
+            </section>
 
-        <!-- =========================================
-             FUTURE FEATURES
-        ========================================= -->
-        <section>
+            <!-- =========================================
+                 FOOTER
+            ========================================= -->
+            <footer class="site-footer">
+                <a class="btn" href="../index.html">Back to Projects</a>
+            </footer>
 
-            <h2>Future Improvements</h2>
-
-            <ul>
-                <li>Cloud syncing</li>
-                <li>Multiple profiles</li>
-                <li>Ghost thumbnails per slot</li>
-                <li>Compression for large worlds</li>
-                <li>Async threaded saves</li>
-            </ul>
-
-        </section>
-
-        <!-- =========================================
-             FOOTER
-        ========================================= -->
-        <footer class="site-footer">
-            <a class="btn" href="../index.html">Back to Projects</a>
-        </footer>
+        </div>
 
     </main>
 
