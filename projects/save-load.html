@@ -90,11 +90,10 @@
                     The save system is built using clean separation of responsibility across three layers:
                 </p>
 
-                <ul>
-                    <li><strong>UI Layer</strong> — Slot widgets and input</li>
-                    <li><strong>Manager Layer</strong> — Central Save Manager</li>
-                    <li><strong>Data Layer</strong> — Custom SaveGame class</li>
-                </ul>
+                <span class="pill">Subsystem-based Design</span>
+                <span class="pill">Data-Oriented</span>
+                <span class="pill">UI-Isolated</span>
+
 
 
                 <img src="../assets/codeCoreIO.png" alt="Save Manager class screenshot placeholder" class="wide-img">
@@ -104,64 +103,64 @@
                 </p>
 
 
-                <pre><code>
+                <pre class="arch-diagram"><code>
 
-                ┌──────────────────────────────┐
-                │            UI                │
-                │  Save Menu Widgets (UMG)     │
-                │  Slot Buttons / Rename / UI  │
-                └───────────────┬──────────────┘
-                │ Blueprint calls
-                ▼
-                ┌──────────────────────────────┐
-                │        Save Subsystem         │
-                │     (USaveSubsystem)          │
-                │--------------------------------
-                │ - SaveToSlotSync()            │
-                │ - LoadFromSlotSync()          │
-                │ - DeleteSlot()                │
-                │ - CopySlot()                  │
-                │ - RenameSlot()                │
-                │ - PeekSummary()               │
-                │ - BeginSessionTimer()         │
-                │ - MarkPickupCollected()       │
-                │--------------------------------
-                │ Manages: Current Save Object  │
-                │ Fires: OnSaved / OnLoaded     │
-                └───────────────┬──────────────┘
-                │
-                Unreal Save API (Engine)
-                │
-                ▼
-                ┌──────────────────────────────┐
-                │        UCodeSaveGame          │
-                │        (Save Data Layer)      │
-                │--------------------------------
-                │ - PlayerScore                 │
-                │ - KeysCollected               │
-                │ - LastLevel                   │
-                │ - DisplayName                 │
-                │ - TimePlayedSeconds           │
-                │ - SavedItems[]                │
-                │ - PotionStates (TMap)         │
-                │ - CollectedPickupsByLevel     │
-                └───────────────┬──────────────┘
-                │
-                Serialized Save File
-                │
-                ▼
-                ┌──────────────────────────────┐
-                │          Disk Storage         │
-                │     .sav files per slot       │
-                │   (PZ_Slot_0, PZ_Slot_1...)    │
-                └──────────────────────────────┘
+                ┌──────────────────────────────────────┐
+                │                UI LAYER              │
+                │         (Save Menu Widgets)          │
+                │   Slot Buttons • Rename • Overwrite  │
+                └──────────────────────┬───────────────┘
+                                       │ Blueprint Calls
+                                       ▼
+                ┌──────────────────────────────────────┐
+                │        SAVE MANAGER LAYER             │
+                │         (USaveSubsystem)              │
+                │--------------------------------------│
+                │  SaveToSlotSync()                     │
+                │  LoadFromSlotSync()                   │
+                │  DeleteSlot()                         │
+                │  CopySlot()                           │
+                │  RenameSlot()                         │
+                │  PeekSummary()                        │
+                │  BeginSessionTimer()                  │
+                │  MarkPickupCollected()                │
+                │--------------------------------------│
+                │  Maintains Session State              │
+                │  Dispatches OnSaved / OnLoaded        │
+                └──────────────────────┬───────────────┘
+                                       │ Unreal Engine
+                                       │ SaveGame API
+                                       ▼
+                ┌──────────────────────────────────────┐
+                │            DATA LAYER                 │
+                │           (UCodeSaveGame)             │
+                │--------------------------------------│
+                │  PlayerScore                          │
+                │  KeysCollected                        │
+                │  LastLevel                            │
+                │  DisplayName                          │
+                │  TimePlayedSeconds                    │
+                │  SavedItems[]                         │
+                │  PotionStates (TMap)                  │
+                │  CollectedPickupsByLevel              │
+                └──────────────────────┬───────────────┘
+                                       │ Serialization
+                                       ▼
+                ┌──────────────────────────────────────┐
+                │           DISK STORAGE                │
+                │     .sav slot files on disk           │
+                │    (PZ_Slot_0, PZ_Slot_1...)           │
+                └──────────────────────────────────────┘
 
                 </code></pre>
+
                 <p class="caption">
-                    This diagram shows the complete architecture of the Save/Load system. The UI communicates with the Save Subsystem,
-                    which owns all game persistence logic. That subsystem manages a SaveGame data object that is serialized to disk
-                    using Unreal’s engine API. This clean separation ensures data integrity, scalability, and UI safety.
+                    This architecture diagram illustrates the complete Save/Load pipeline. The UI layer remains fully
+                    decoupled from persistence logic, communicating only through the Save Subsystem. All data is funneled
+                    into a single SaveGame object, ensuring version safety, scalability, and predictable serialization.
+                    This design mirrors patterns used in production game pipelines.
                 </p>
+
                 <!--   <img src="../assets/save_architecture.png" alt="Diagram of Save System Architecture" class="wide-img">   -->
 
 
