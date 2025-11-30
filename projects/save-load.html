@@ -569,34 +569,117 @@ UpdateSlotCard(Summary);
                 This separation ensures the system remains maintainable as projects scale in complexity and content size.
             </p>
         </section>
+
         <!-- =========================================
     TAKEAWAYS
     ========================================= -->
         <section>
-            <h2>What I Learned</h2>
-            <img src="../assets/placeholder_lessons.png" alt="Lessons learned placeholder" class="wide-img">
+            <h2>What I Learned — Engineering Lessons from a Save System</h2>
+
+            <p>
+                Building a save system in C++ changed how I view persistence. Saving is not an isolated feature —
+                it cuts across architecture, UI design, and runtime safety. This project reinforced that a reliable
+                system must be designed holistically, not assembled afterward.
+            </p>
+
+            <div class="pill-row">
+                <span class="pill">Systems Thinking</span>
+                <span class="pill">Defensive Coding</span>
+                <span class="pill">UX Awareness</span>
+                <span class="pill">Data Ownership</span>
+                <span class="pill">Failure Planning</span>
+            </div>
+
+            <img src="../assets/placeholder_lessons.png" alt="Lessons learned" class="wide-img">
+
             <ul>
-                <li>Persistence is architecture, not just storage</li>
-                <li>UX matters even in backend systems</li>
-                <li>Clean separation prevents messy refactors</li>
-                <li>Visual clarity builds trust</li>
+                <li>
+                    <strong>Persistence is architecture — not a feature</strong><br>
+                    Saving touches input, data modeling, memory, world state, and UI. Treating it as a bolt-on system
+                    guarantees instability later.
+                </li>
+
+                <li>
+                    <strong>UX trust matters in backend systems</strong><br>
+                    If players cannot trust what a save slot represents, the entire experience degrades — even if the
+                    underlying code is solid.
+                </li>
+
+                <li>
+                    <strong>Metadata is just as important as data</strong><br>
+                    The save file is not only storage — it’s a communication channel between project state and the player.
+                </li>
+
+                <li>
+                    <strong>Transactional thinking prevents corruption</strong><br>
+                    Designing slot operations like transactions (copy → validate → replace) prevents catastrophic loss.
+                </li>
+
+                <li>
+                    <strong>Subsystems scale better than scripts</strong><br>
+                    Central authority beats scattered logic every time. This pattern applies well beyond save systems.
+                </li>
             </ul>
         </section>
+
+
 
         <!-- =========================================
     FUTURE FEATURES
     ========================================= -->
         <section>
-            <h2>Future Improvements</h2>
-            <img src="../assets/placeholder_future.png" alt="Future features placeholder" class="wide-img">
+            <h2>Future Improvements — Where This System Can Grow</h2>
+
+            <p>
+                The foundation is intentionally extensible. The Save Subsystem was written to grow without structural
+                rewrite, enabling new persistence features to layer cleanly on top of existing architecture.
+            </p>
+
+            <div class="pill-row">
+                <span class="pill">Extensible</span>
+                <span class="pill">Platform-Ready</span>
+                <span class="pill">Resilient</span>
+                <span class="pill">User-Centric</span>
+                <span class="pill">Production-Scalable</span>
+            </div>
+
+            <img src="../assets/placeholder_future.png" alt="Future save system features" class="wide-img">
+
             <ul>
-                <li>Cloud saves</li>
-                <li>Profiles</li>
-                <li>Screenshot thumbnails</li>
-                <li>Compression</li>
-                <li>Threading</li>
+                <li>
+                    <strong>Cloud Save Support</strong><br>
+                    Sync save slots across devices using platform APIs or backend services with conflict resolution rules.
+                </li>
+
+                <li>
+                    <strong>Multiple Player Profiles</strong><br>
+                    Profile-scoped save directories allow multiple users on a single machine without shared slot collision.
+                </li>
+
+                <li>
+                    <strong>Visual Save Thumbnails</strong><br>
+                    Capture world snapshots at save time for improved recognition inside the UI.
+                </li>
+
+                <li>
+                    <strong>Data Compression</strong><br>
+                    Reduce disk footprint for large project states using binary compression before writing to disk.
+                </li>
+
+                <li>
+                    <strong>Async Save Tasks</strong><br>
+                    Background save/write operations prevent frame spikes during large world serialization.
+                </li>
+
+                <li>
+                    <strong>Versioned Data Migration</strong><br>
+                    Backward compatibility for legacy saves using structured versioning and safe upgrades.
+                </li>
             </ul>
         </section>
+
+
+
 
         <!-- =========================================
     FOOTER
