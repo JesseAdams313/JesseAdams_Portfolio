@@ -10,413 +10,482 @@
     <link rel="stylesheet" href="../style.css" />
 </head>
 
-    <body>
-
-        <!-- =========================================
-             CASE STUDY HEADER
-        ========================================= -->
-        <header class="site-header">
-            <a class="brand" href="../index.html">← Back to Portfolio</a>
-        </header>
-
-        <main class="section">
-
-            <!-- =========================================
-                CENTERED PAGE WRAPPER
-            ========================================= -->
-            <div class="case-wrapper">
-
-            <!-- =========================================
-            HERO / INTRO
-            ========================================= -->
-            <section class="section-head">
-                <h1>Save & Load System — Unreal Engine 5 (C++)</h1>
-                <p class="lead">
-                    A scalable, slot-based save system built entirely in C++ for Unreal Engine 5.
-                    Designed with performance, extensibility, and UI clarity in mind—supporting metadata,
-                    world persistence, and cross-session restoration.
-                </p>
-            </section>
-
-            <!-- HERO UI IMAGE -->
-            <img src="../assets/save_load_menu2.png" alt="Save Slot UI" class="wide-img">
-
-            <!-- =========================================
-            OVERVIEW
-            ========================================= -->
-            <section>
-                <h2>Project Overview</h2>
-                <p>
-                    This project replaces Blueprint-based persistence with a professional-grade C++ system.
-                    The save architecture was designed like a production feature — modular systems, clean APIs,
-                    and complete UI separation from backend logic.
-                </p>
-
-                <img src="../assets/save_load_menu3.png" alt="Overview screenshot placeholder" class="wide-img">
-
-                <ul class="pill-list">
-                    <li>Unreal Engine 5</li>
-                    <li>C++</li>
-                    <li>UI Architecture</li>
-                    <li>Serialization</li>
-                    <li>Persistence</li>
-                    <li>UX Design</li>
-                </ul>
-            </section>
-
-            <!-- =========================================
-            DESIGN GOALS
-            ========================================= -->
-            <section>
-                <h2>Design Goals</h2>
-                <ul>
-                    <li>Professional-feeling save UI</li>
-                    <li>Slot naming, overwriting, and deletion</li>
-                    <li>Persistent world data across sessions</li>
-                    <li>Metadata visibility and clarity</li>
-                    <li>Scalable backend architecture</li>
-                    <li>Full C++ implementation</li>
-                </ul>
-
-                <img src="../assets/Save_Load Menu.png" alt="Design goals placeholder UI" class="wide-img">
-            </section>
-
-            <!-- =========================================
-            ARCHITECTURE
-            ========================================= -->
-            <section>
-                <h2>System Architecture</h2>
-                <p>
-                    The save system is built using clean separation of responsibility across three layers:
-                </p>
-
-                <div class="pill-row">
-                    <span class="pill">Subsystem-based Design</span>
-                    <span class="pill">Data-Oriented</span>
-                    <span class="pill">UI-Isolated</span>
-                </div>
-
-                <img src="../assets/codeCoreIO.png" alt="Save Manager class screenshot placeholder" class="wide-img">
-
-                <p>
-                    This isolation ensures safe updates to UI without risking data loss or logic errors.
-                </p>
-
-                <pre class="arch-diagram"><code>
-
-            ┌──────────────────────────────────────┐
-            │                UI LAYER              │
-            │         (Save Menu Widgets)          │
-            │   Slot Buttons • Rename • Overwrite  │
-            └──────────────────────┬───────────────┘
-                        │ Blueprint Calls
-                        ▼
-            ┌──────────────────────────────────────┐
-            │        SAVE MANAGER LAYER             │
-            │         (USaveSubsystem)              │
-            │--------------------------------------│
-            │  SaveToSlotSync()                     │
-            │  LoadFromSlotSync()                   │
-            │  DeleteSlot()                         │
-            │  CopySlot()                           │
-            │  RenameSlot()                         │
-            │  PeekSummary()                        │
-            │  BeginSessionTimer()                  │
-            │  MarkPickupCollected()                │
-            │--------------------------------------│
-            │  Maintains Session State              │
-            │  Dispatches OnSaved / OnLoaded        │
-            └──────────────────────┬───────────────┘
-                        │ Unreal Engine
-                        │ SaveGame API
-                        ▼
-            ┌──────────────────────────────────────┐
-            │            DATA LAYER                 │
-            │           (UCodeSaveGame)             │
-            │--------------------------------------│
-            │  PlayerScore                          │
-            │  KeysCollected                        │
-            │  LastLevel                            │
-            │  DisplayName                          │
-            │  TimePlayedSeconds                    │
-            │  SavedItems[]                         │
-            │  PotionStates (TMap)                  │
-            │  CollectedPickupsByLevel              │
-            └──────────────────────┬───────────────┘
-                        │ Serialization
-                        ▼
-            ┌──────────────────────────────────────┐
-            │           DISK STORAGE                │
-            │     .sav slot files on disk           │
-            │    (PZ_Slot_0, PZ_Slot_1...)           │
-            └──────────────────────────────────────┘
-
-                </code></pre>
-
-                <p class="caption">
-                    This architecture diagram illustrates the complete Save/Load pipeline. The UI layer remains fully
-                    decoupled from persistence logic, communicating only through the Save Subsystem. All data is funneled
-                    into a single SaveGame object, ensuring version safety, scalability, and predictable serialization.
-                    This design mirrors patterns used in production game pipelines.
-                </p>
-            </section>
-
-            <!-- =========================================
-            SLOT DETAILS (PATCHED)
-            ========================================= -->
-            <section>
-                <h2>Slot System & Runtime Metadata</h2>
-
-                <p>
-                    Each save slot is backed by a strongly-typed <code>UCodeSaveGame</code> object that stores both gameplay state
-                    and presentation-ready metadata. Save files are not treated as opaque blobs — they expose structured fields
-                    that allow the UI to display progress, timestamps, and session history without loading full game state.
-                </p>
-
-                <p>
-                    Metadata is written centrally by the <code>USaveSubsystem</code> to guarantee consistency across save operations
-                    and eliminate the risk of desynchronization between runtime state and disk data.
-                </p>
-
-                <div class="pill-row">
-                    <span class="pill">Human-readable Slot Names</span>
-                    <span class="pill">UTC Timestamping</span>
-                    <span class="pill">Session Runtime Tracking</span>
-                    <span class="pill">Inventory Snapshot</span>
-                    <span class="pill">Per-Level Pickup State</span>
-                    <span class="pill">Potion Persistence</span>
-                </div>
-
-                <img src="../assets/save_slot_details.png" alt="Save slots showing timestamp and progress summary" class="wide-img">
-
-                <p>
-                    All metadata is stamped deterministically at save-time. Runtime playtime accumulation is measured using
-                    high-resolution platform timers instead of frame-based approximation.
-                </p>
-
-                <pre><code>
-            // Meta stamping during save
-            Current->LastSavedUtc = FDateTime::UtcNow();
-            Current->TimePlayedSeconds = GetSessionSeconds();
-                </code></pre>
-
-                <h3>Slot Summaries (No Full Load Required)</h3>
-
-                <p>
-                    Slots can be inspected using a lightweight summary query that loads only metadata, not live world state.
-                    This allows the UI menu to remain responsive and safe regardless of save size or content depth.
-                </p>
-
-                <pre><code>
-            // Read metadata safely without restoring world state
-            FSaveSummary Summary = SaveSubsystem->PeekSummary(SlotIndex);
-
-            UI->SetSlotName(Summary.DisplayName);
-            UI->SetTimestamp(Summary.LastSavedUtc);
-            UI->SetProgress(Summary.PlayerScore, Summary.KeysCollected);
-                </code></pre>
-
-                <p>
-                    This summary layer prevents accidental world restoration while enabling rich UI previews of every save slot.
-                </p>
-
-                <h3>Persistent World Data</h3>
-
-                <p>
-                    World persistence is handled at a per-level granularity using GUID-based tracking. Every collectible object
-                    stores a unique identifier when picked up, ensuring destroyed or collected actors do not respawn.
-                </p>
-
-                <pre><code>
-            // GUID-based pickup tracking by level
-            Current->CollectedPickupsByLevel
-            .FindOrAdd(LevelName)
-            .Ids.Add(PickupId);
-                </code></pre>
-
-                <p>
-                    Potion effects use enum-based serialization rather than string parsing. This provides deterministic restore
-                    behavior and eliminates fragile runtime mapping.
-                </p>
-
-                <img src="../assets/placeholder_slot_state.png" alt="Slot rename and overwrite interface" class="wide-img">
-
-                <h3>Fault-Tolerant Slot Operations</h3>
-
-                <p>
-                    Slot renaming uses an atomic copy-and-delete workflow to ensure data integrity. The original slot remains
-                    intact unless the new slot is written successfully.
-                </p>
-
-                <pre><code>
-            // Rename = copy slot + delete original
-            CopySlot(FromSlot, ToSlot, OutError);
-            DeleteSlot(FromSlot, OutError);
-                </code></pre>
-
-                <p>
-                    This transactional model prevents corruption during write failures and mirrors production safety patterns.
-                </p>
-            </section>
-
-            <!-- =========================================
-            C++ EXAMPLE
-            ========================================= -->
-            <section>
-                <h2>C++ Highlight</h2>
-                <p>
-                    All saving and loading is controlled through the Save Manager class:
-                </p>
-
-                <pre><code>
-            // Save Trigger
-            UGameplayStatics::SaveGameToSlot(CurrentSave, SlotName, 0);
-
-            // Load Trigger
-            UGameplayStatics::LoadGameFromSlot(SlotName, 0);
-                </code></pre>
-
-                <img src="../assets/codeSaveGame.png" alt="C++ Save Manager code placeholder" class="wide-img">
-
-                <ul>
-                    <li>Custom USaveGame class</li>
-                    <li>Slot auto-detection</li>
-                    <li>Load validation</li>
-                    <li>Error-safe routines</li>
-                </ul>
-            </section>
-
-            <!-- =========================================
-            UI FOCUS
-            ========================================= -->
-            <section>
-                <h2>UI / UX Design</h2>
-                <ul>
-                    <li>Readable typography</li>
-                    <li>High-contrast cards</li>
-                    <li>Selection feedback</li>
-                    <li>Delete confirmations</li>
-                    <li>Controller support</li>
-                </ul>
-
-                <img src="../assets/save_ui_states.png" alt="Save menu UI interaction states" class="wide-img">
-
-                <img src="../assets/placeholder_controller_nav.png" alt="Controller navigation placeholder" class="wide-img">
-            </section>
-            <!-- =========================================
-            WHY C++
-            ========================================= -->
-            <section>
-                <h2>Why C++?</h2>
-
-                <p>
-                    While Unreal Engine enables rapid iteration with Blueprints, this project was intentionally built in C++
-                    to demonstrate production-level engineering practices, deeper engine integration, and long-term scalability.
-                    The Save/Load system was treated as a core engine feature rather than a scripting layer convenience.
-                </p>
-
-                <div class="pill-row">
-                    <span class="pill">Deterministic Behavior</span>
-                    <span class="pill">Lower Runtime Overhead</span>
-                    <span class="pill">Better Error Visibility</span>
-                    <span class="pill">Scalable Code Architecture</span>
-                    <span class="pill">Engine-Level Control</span>
-                </div>
-
-                <img src="../assets/placeholder_blueprint_vs_cpp.png" alt="Blueprint vs C++ comparison placeholder" class="wide-img">
-
-                <h3>Core Reasons for a C++ Implementation</h3>
-
-                <ul>
-                    <li>
-                        <strong>Performance & Memory Control</strong><br>
-                        Writing the system in C++ eliminates Blueprint overhead and gives precise control over object lifetime,
-                        memory, and serialization behavior — critical for large save files and complex object graphs.
-                    </li>
-
-                    <li>
-                        <strong>Predictable Serialization</strong><br>
-                        Data layouts, defaults, and version handling are explicitly defined in code. This prevents silent breakage
-                        from refactors and allows for clean data migrations as the project evolves.
-                    </li>
-
-                    <li>
-                        <strong>Debugging & Reliability</strong><br>
-                        Crashes, invalid loads, and corrupted slot detection can be observed directly through call stacks and memory
-                        traces rather than opaque Blueprint failures or silent UI breakage.
-                    </li>
-
-                    <li>
-                        <strong>Scalable Architecture</strong><br>
-                        The Save Subsystem was structured as an engine-style service rather than a monolithic script file. This allows
-                        extension (cloud saves, profiles, checkpoint systems) without rewriting foundational logic.
-                    </li>
-
-                    <li>
-                        <strong>Strong UI Binding</strong><br>
-                        UI logic remains decoupled and data-driven: widgets query structured summaries instead of executing save logic.
-                        This keeps Blueprint usage lean and presentation-focused while C++ owns state and behavior.
-                    </li>
-                </ul>
-
-                <h3>Blueprint vs C++ in This Project</h3>
-
-                <p>
-                    Blueprints remain valuable for UI layout and menu flow, but core game systems must be deterministic, testable,
-                    and extensible. In this implementation:
-                </p>
-
-                <ul>
-                    <li>Blueprints handle presentation and navigation</li>
-                    <li>C++ owns persistence, data integrity, and state restoration</li>
-                    <li>UI depends on data — never logic side-effects</li>
-                </ul>
-
-                <p>
-                    This separation ensures the system remains maintainable as projects scale in complexity and content size.
-                </p>
-            </section>
-            <!-- =========================================
-                        TAKEAWAYS
-                ========================================= -->
-            <section>
-                <h2>What I Learned</h2>
-                <img src="../assets/placeholder_lessons.png" alt="Lessons learned placeholder" class="wide-img">
-                <ul>
-                    <li>Persistence is architecture, not just storage</li>
-                    <li>UX matters even in backend systems</li>
-                    <li>Clean separation prevents messy refactors</li>
-                    <li>Visual clarity builds trust</li>
-                </ul>
-            </section>
-
-            <!-- =========================================
-            FUTURE FEATURES
-            ========================================= -->
-            <section>
-                <h2>Future Improvements</h2>
-                <img src="../assets/placeholder_future.png" alt="Future features placeholder" class="wide-img">
-                <ul>
-                    <li>Cloud saves</li>
-                    <li>Profiles</li>
-                    <li>Screenshot thumbnails</li>
-                    <li>Compression</li>
-                    <li>Threading</li>
-                </ul>
-            </section>
-
-            <!-- =========================================
-            FOOTER
-            ========================================= -->
-            <footer class="site-footer">
-                <a class="btn" href="../index.html">Back to Projects</a>
-            </footer>
-
-            </div>
-
-        </main>
-
-    </body>
+<body>
+
+<!-- =========================================
+CASE STUDY HEADER
+========================================= -->
+<header class="site-header">
+<a class="brand" href="../index.html">← Back to Portfolio</a>
+</header>
+
+<main class="section">
+
+<!-- =========================================
+CENTERED PAGE WRAPPER
+========================================= -->
+<div class="case-wrapper">
+
+<!-- =========================================
+HERO / INTRO
+========================================= -->
+<section class="section-head">
+    <h1>Save & Load System — Unreal Engine 5 (C++)</h1>
+    <p class="lead">
+        A scalable, slot-based save system built entirely in C++ for Unreal Engine 5.
+        Designed with performance, extensibility, and UI clarity in mind—supporting metadata,
+        world persistence, and cross-session restoration.
+    </p>
+</section>
+
+<!-- HERO UI IMAGE -->
+<img src="../assets/save_load_menu2.png" alt="Save Slot UI" class="wide-img">
+
+<!-- =========================================
+OVERVIEW
+========================================= -->
+<section>
+    <h2>Project Overview</h2>
+    <p>
+        This project replaces Blueprint-based persistence with a professional-grade C++ system.
+        The save architecture was designed like a production feature — modular systems, clean APIs,
+        and complete UI separation from backend logic.
+    </p>
+
+    <img src="../assets/save_load_menu3.png" alt="Overview screenshot placeholder" class="wide-img">
+
+    <ul class="pill-list">
+        <li>Unreal Engine 5</li>
+        <li>C++</li>
+        <li>UI Architecture</li>
+        <li>Serialization</li>
+        <li>Persistence</li>
+        <li>UX Design</li>
+    </ul>
+</section>
+
+<!-- =========================================
+DESIGN GOALS
+========================================= -->
+<section>
+    <h2>Design Goals</h2>
+    <ul>
+        <li>Professional-feeling save UI</li>
+        <li>Slot naming, overwriting, and deletion</li>
+        <li>Persistent world data across sessions</li>
+        <li>Metadata visibility and clarity</li>
+        <li>Scalable backend architecture</li>
+        <li>Full C++ implementation</li>
+    </ul>
+
+    <img src="../assets/Save_Load Menu.png" alt="Design goals placeholder UI" class="wide-img">
+</section>
+
+<!-- =========================================
+ARCHITECTURE
+========================================= -->
+<section>
+    <h2>System Architecture</h2>
+    <p>
+        The save system is built using clean separation of responsibility across three layers:
+    </p>
+
+    <div class="pill-row">
+        <span class="pill">Subsystem-based Design</span>
+        <span class="pill">Data-Oriented</span>
+        <span class="pill">UI-Isolated</span>
+    </div>
+
+    <img src="../assets/codeCoreIO.png" alt="Save Manager class screenshot placeholder" class="wide-img">
+
+    <p>
+        This isolation ensures safe updates to UI without risking data loss or logic errors.
+    </p>
+
+    <pre class="arch-diagram"><code>
+
+┌──────────────────────────────────────┐
+│                UI LAYER              │
+│         (Save Menu Widgets)          │
+│   Slot Buttons • Rename • Overwrite  │
+└──────────────────────┬───────────────┘
+        │ Blueprint Calls
+        ▼
+┌──────────────────────────────────────┐
+│        SAVE MANAGER LAYER             │
+│         (USaveSubsystem)              │
+│--------------------------------------│
+│  SaveToSlotSync()                     │
+│  LoadFromSlotSync()                   │
+│  DeleteSlot()                         │
+│  CopySlot()                           │
+│  RenameSlot()                         │
+│  PeekSummary()                        │
+│  BeginSessionTimer()                  │
+│  MarkPickupCollected()                │
+│--------------------------------------│
+│  Maintains Session State              │
+│  Dispatches OnSaved / OnLoaded        │
+└──────────────────────┬───────────────┘
+        │ Unreal Engine
+        │ SaveGame API
+        ▼
+┌──────────────────────────────────────┐
+│            DATA LAYER                 │
+│           (UCodeSaveGame)             │
+│--------------------------------------│
+│  PlayerScore                          │
+│  KeysCollected                        │
+│  LastLevel                            │
+│  DisplayName                          │
+│  TimePlayedSeconds                    │
+│  SavedItems[]                         │
+│  PotionStates (TMap)                  │
+│  CollectedPickupsByLevel              │
+└──────────────────────┬───────────────┘
+        │ Serialization
+        ▼
+┌──────────────────────────────────────┐
+│           DISK STORAGE                │
+│     .sav slot files on disk           │
+│    (PZ_Slot_0, PZ_Slot_1...)           │
+└──────────────────────────────────────┘
+
+</code></pre>
+
+    <p class="caption">
+        This architecture diagram illustrates the complete Save/Load pipeline. The UI layer remains fully
+        decoupled from persistence logic, communicating only through the Save Subsystem. All data is funneled
+        into a single SaveGame object, ensuring version safety, scalability, and predictable serialization.
+        This design mirrors patterns used in production game pipelines.
+    </p>
+</section>
+
+<!-- =========================================
+SLOT DETAILS (PATCHED)
+========================================= -->
+<section>
+    <h2>Slot System & Runtime Metadata</h2>
+
+    <p>
+        Each save slot is backed by a strongly-typed <code>UCodeSaveGame</code> object that stores both gameplay state
+        and presentation-ready metadata. Save files are not treated as opaque blobs — they expose structured fields
+        that allow the UI to display progress, timestamps, and session history without loading full game state.
+    </p>
+
+    <p>
+        Metadata is written centrally by the <code>USaveSubsystem</code> to guarantee consistency across save operations
+        and eliminate the risk of desynchronization between runtime state and disk data.
+    </p>
+
+    <div class="pill-row">
+        <span class="pill">Human-readable Slot Names</span>
+        <span class="pill">UTC Timestamping</span>
+        <span class="pill">Session Runtime Tracking</span>
+        <span class="pill">Inventory Snapshot</span>
+        <span class="pill">Per-Level Pickup State</span>
+        <span class="pill">Potion Persistence</span>
+    </div>
+
+    <img src="../assets/save_slot_details.png" alt="Save slots showing timestamp and progress summary" class="wide-img">
+
+    <p>
+        All metadata is stamped deterministically at save-time. Runtime playtime accumulation is measured using
+        high-resolution platform timers instead of frame-based approximation.
+    </p>
+
+    <pre><code>
+// Meta stamping during save
+Current->LastSavedUtc = FDateTime::UtcNow();
+Current->TimePlayedSeconds = GetSessionSeconds();
+</code></pre>
+
+    <h3>Slot Summaries (No Full Load Required)</h3>
+
+    <p>
+        Slots can be inspected using a lightweight summary query that loads only metadata, not live world state.
+        This allows the UI menu to remain responsive and safe regardless of save size or content depth.
+    </p>
+
+    <pre><code>
+// Read metadata safely without restoring world state
+FSaveSummary Summary = SaveSubsystem->PeekSummary(SlotIndex);
+
+UI->SetSlotName(Summary.DisplayName);
+UI->SetTimestamp(Summary.LastSavedUtc);
+UI->SetProgress(Summary.PlayerScore, Summary.KeysCollected);
+</code></pre>
+
+    <p>
+        This summary layer prevents accidental world restoration while enabling rich UI previews of every save slot.
+    </p>
+
+    <h3>Persistent World Data</h3>
+
+    <p>
+        World persistence is handled at a per-level granularity using GUID-based tracking. Every collectible object
+        stores a unique identifier when picked up, ensuring destroyed or collected actors do not respawn.
+    </p>
+
+    <pre><code>
+// GUID-based pickup tracking by level
+Current->CollectedPickupsByLevel
+.FindOrAdd(LevelName)
+.Ids.Add(PickupId);
+</code></pre>
+
+    <p>
+        Potion effects use enum-based serialization rather than string parsing. This provides deterministic restore
+        behavior and eliminates fragile runtime mapping.
+    </p>
+
+    <img src="../assets/placeholder_slot_state.png" alt="Slot rename and overwrite interface" class="wide-img">
+
+    <h3>Fault-Tolerant Slot Operations</h3>
+
+    <p>
+        Slot renaming uses an atomic copy-and-delete workflow to ensure data integrity. The original slot remains
+        intact unless the new slot is written successfully.
+    </p>
+
+    <pre><code>
+// Rename = copy slot + delete original
+CopySlot(FromSlot, ToSlot, OutError);
+DeleteSlot(FromSlot, OutError);
+</code></pre>
+
+    <p>
+        This transactional model prevents corruption during write failures and mirrors production safety patterns.
+    </p>
+</section>
+<!-- =========================================
+C++ HIGHLIGHT
+========================================= -->
+<section>
+    <h2>C++ Highlight — Save Subsystem Implementation</h2>
+
+    <p>
+        Rather than embedding save logic directly inside UI or gameplay classes, this system uses a centralized
+        <strong>Save Subsystem</strong> that acts as the single authority for persistence, slot management, and metadata
+        handling. This prevents duplication, enforces consistency, and mirrors patterns found in production-scale projects.
+    </p>
+
+    <div class="pill-row">
+        <span class="pill">UGameInstanceSubsystem</span>
+        <span class="pill">Data-Oriented</span>
+        <span class="pill">Event-Driven</span>
+        <span class="pill">Metadata-Aware</span>
+        <span class="pill">Failsafe I/O</span>
+    </div>
+
+    <h3>Core Save / Load Flow</h3>
+
+    <pre><code>
+// ---------------- Save ----------------
+FText Error;
+SaveSubsystem->SaveToSlotSync(ActiveSlotIndex, Error);
+
+// ---------------- Load ----------------
+SaveSubsystem->LoadFromSlotSync(ActiveSlotIndex, Error);
+</code></pre>
+
+    <p class="caption">
+        The UI layer never directly touches the SaveGame API. All persistence is routed through the Save Subsystem,
+        ensuring centralized validation, slot safety, and predictable serialization behavior.
+    </p>
+
+    <img src="../assets/codeSaveGame.png" alt="Save Subsystem C++ core logic" class="wide-img">
+
+    <h3>What the Subsystem Manages</h3>
+
+    <ul>
+        <li>
+            <strong>Slot lifecycle control</strong><br>
+            Creation, overwrite protection, copy, delete, and rename routines are encapsulated in one interface.
+        </li>
+
+        <li>
+            <strong>Metadata stamping</strong><br>
+            Save time, playtime, level, and display name are injected automatically at write-time.
+        </li>
+
+        <li>
+            <strong>Session timing</strong><br>
+            Wall-clock tracking ensures playtime persists across sessions and is resumed accurately after loading.
+        </li>
+
+        <li>
+            <strong>Safe loading</strong><br>
+            Slots are validated before access. Invalid loads surface descriptive errors instead of crashing the UI.
+        </li>
+
+        <li>
+            <strong>World-state persistence</strong><br>
+            Collected pickups, inventory, potion states, and player metrics are restored through structured data
+            instead of raw Blueprint state reconstruction.
+        </li>
+    </ul>
+
+    <h3>SaveGame Object Structure</h3>
+
+    <pre><code>
+UCLASS()
+class UCodeSaveGame : public USaveGame
+{
+GENERATED_BODY()
+
+public:
+int32 PlayerScore;
+int32 KeysCollected;
+FName LastLevel;
+FString DisplayName;
+
+FDateTime LastSavedUtc;
+int32 TimePlayedSeconds;
+
+TArray&lt;FItemStruct&gt; SavedItems;
+TMap&lt;EPotionType, EPotionState&gt; PotionStates;
+TMap&lt;FName, FCollectedGuidList&gt; CollectedPickupsByLevel;
+};
+</code></pre>
+
+    <p class="caption">
+        The SaveGame object is structured as a real data model — not a dumping ground for Blueprint variables.
+        The layout reflects intentional design around persistent state, version safety, and extensibility.
+    </p>
+
+</section>
+<!-- =========================================
+UI FOCUS
+========================================= -->
+<section>
+    <h2>UI / UX Design</h2>
+    <ul>
+        <li>Readable typography</li>
+        <li>High-contrast cards</li>
+        <li>Selection feedback</li>
+        <li>Delete confirmations</li>
+        <li>Controller support</li>
+    </ul>
+
+    <img src="../assets/save_ui_states.png" alt="Save menu UI interaction states" class="wide-img">
+
+    <img src="../assets/placeholder_controller_nav.png" alt="Controller navigation placeholder" class="wide-img">
+</section>
+<!-- =========================================
+WHY C++
+========================================= -->
+<section>
+    <h2>Why C++?</h2>
+
+    <p>
+        While Unreal Engine enables rapid iteration with Blueprints, this project was intentionally built in C++
+        to demonstrate production-level engineering practices, deeper engine integration, and long-term scalability.
+        The Save/Load system was treated as a core engine feature rather than a scripting layer convenience.
+    </p>
+
+    <div class="pill-row">
+        <span class="pill">Deterministic Behavior</span>
+        <span class="pill">Lower Runtime Overhead</span>
+        <span class="pill">Better Error Visibility</span>
+        <span class="pill">Scalable Code Architecture</span>
+        <span class="pill">Engine-Level Control</span>
+    </div>
+
+    <img src="../assets/placeholder_blueprint_vs_cpp.png" alt="Blueprint vs C++ comparison placeholder" class="wide-img">
+
+    <h3>Core Reasons for a C++ Implementation</h3>
+
+    <ul>
+        <li>
+            <strong>Performance & Memory Control</strong><br>
+            Writing the system in C++ eliminates Blueprint overhead and gives precise control over object lifetime,
+            memory, and serialization behavior — critical for large save files and complex object graphs.
+        </li>
+
+        <li>
+            <strong>Predictable Serialization</strong><br>
+            Data layouts, defaults, and version handling are explicitly defined in code. This prevents silent breakage
+            from refactors and allows for clean data migrations as the project evolves.
+        </li>
+
+        <li>
+            <strong>Debugging & Reliability</strong><br>
+            Crashes, invalid loads, and corrupted slot detection can be observed directly through call stacks and memory
+            traces rather than opaque Blueprint failures or silent UI breakage.
+        </li>
+
+        <li>
+            <strong>Scalable Architecture</strong><br>
+            The Save Subsystem was structured as an engine-style service rather than a monolithic script file. This allows
+            extension (cloud saves, profiles, checkpoint systems) without rewriting foundational logic.
+        </li>
+
+        <li>
+            <strong>Strong UI Binding</strong><br>
+            UI logic remains decoupled and data-driven: widgets query structured summaries instead of executing save logic.
+            This keeps Blueprint usage lean and presentation-focused while C++ owns state and behavior.
+        </li>
+    </ul>
+
+    <h3>Blueprint vs C++ in This Project</h3>
+
+    <p>
+        Blueprints remain valuable for UI layout and menu flow, but core game systems must be deterministic, testable,
+        and extensible. In this implementation:
+    </p>
+
+    <ul>
+        <li>Blueprints handle presentation and navigation</li>
+        <li>C++ owns persistence, data integrity, and state restoration</li>
+        <li>UI depends on data — never logic side-effects</li>
+    </ul>
+
+    <p>
+        This separation ensures the system remains maintainable as projects scale in complexity and content size.
+    </p>
+</section>
+<!-- =========================================
+TAKEAWAYS
+========================================= -->
+<section>
+    <h2>What I Learned</h2>
+    <img src="../assets/placeholder_lessons.png" alt="Lessons learned placeholder" class="wide-img">
+    <ul>
+        <li>Persistence is architecture, not just storage</li>
+        <li>UX matters even in backend systems</li>
+        <li>Clean separation prevents messy refactors</li>
+        <li>Visual clarity builds trust</li>
+    </ul>
+</section>
+
+<!-- =========================================
+FUTURE FEATURES
+========================================= -->
+<section>
+    <h2>Future Improvements</h2>
+    <img src="../assets/placeholder_future.png" alt="Future features placeholder" class="wide-img">
+    <ul>
+        <li>Cloud saves</li>
+        <li>Profiles</li>
+        <li>Screenshot thumbnails</li>
+        <li>Compression</li>
+        <li>Threading</li>
+    </ul>
+</section>
+
+<!-- =========================================
+FOOTER
+========================================= -->
+<footer class="site-footer">
+    <a class="btn" href="../index.html">Back to Projects</a>
+</footer>
+
+</div>
+
+</main>
+
+</body>
 </html>
 
         <!-- save-load.html END -->
