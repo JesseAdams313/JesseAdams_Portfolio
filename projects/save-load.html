@@ -96,63 +96,60 @@
                     <span class="pill">UI-Isolated</span>
                 </div>
 
-
-
                 <img src="../assets/codeCoreIO.png" alt="Save Manager class screenshot placeholder" class="wide-img">
 
                 <p>
                     This isolation ensures safe updates to UI without risking data loss or logic errors.
                 </p>
 
-
                 <pre class="arch-diagram"><code>
 
-                ┌──────────────────────────────────────┐
-                │                UI LAYER              │
-                │         (Save Menu Widgets)          │
-                │   Slot Buttons • Rename • Overwrite  │
-                └──────────────────────┬───────────────┘
-                                       │ Blueprint Calls
-                                       ▼
-                ┌──────────────────────────────────────┐
-                │        SAVE MANAGER LAYER             │
-                │         (USaveSubsystem)              │
-                │--------------------------------------│
-                │  SaveToSlotSync()                     │
-                │  LoadFromSlotSync()                   │
-                │  DeleteSlot()                         │
-                │  CopySlot()                           │
-                │  RenameSlot()                         │
-                │  PeekSummary()                        │
-                │  BeginSessionTimer()                  │
-                │  MarkPickupCollected()                │
-                │--------------------------------------│
-                │  Maintains Session State              │
-                │  Dispatches OnSaved / OnLoaded        │
-                └──────────────────────┬───────────────┘
-                                       │ Unreal Engine
-                                       │ SaveGame API
-                                       ▼
-                ┌──────────────────────────────────────┐
-                │            DATA LAYER                 │
-                │           (UCodeSaveGame)             │
-                │--------------------------------------│
-                │  PlayerScore                          │
-                │  KeysCollected                        │
-                │  LastLevel                            │
-                │  DisplayName                          │
-                │  TimePlayedSeconds                    │
-                │  SavedItems[]                         │
-                │  PotionStates (TMap)                  │
-                │  CollectedPickupsByLevel              │
-                └──────────────────────┬───────────────┘
-                                       │ Serialization
-                                       ▼
-                ┌──────────────────────────────────────┐
-                │           DISK STORAGE                │
-                │     .sav slot files on disk           │
-                │    (PZ_Slot_0, PZ_Slot_1...)           │
-                └──────────────────────────────────────┘
+┌──────────────────────────────────────┐
+│                UI LAYER              │
+│         (Save Menu Widgets)          │
+│   Slot Buttons • Rename • Overwrite  │
+└──────────────────────┬───────────────┘
+                       │ Blueprint Calls
+                       ▼
+┌──────────────────────────────────────┐
+│        SAVE MANAGER LAYER             │
+│         (USaveSubsystem)              │
+│--------------------------------------│
+│  SaveToSlotSync()                     │
+│  LoadFromSlotSync()                   │
+│  DeleteSlot()                         │
+│  CopySlot()                           │
+│  RenameSlot()                         │
+│  PeekSummary()                        │
+│  BeginSessionTimer()                  │
+│  MarkPickupCollected()                │
+│--------------------------------------│
+│  Maintains Session State              │
+│  Dispatches OnSaved / OnLoaded        │
+└──────────────────────┬───────────────┘
+                       │ Unreal Engine
+                       │ SaveGame API
+                       ▼
+┌──────────────────────────────────────┐
+│            DATA LAYER                 │
+│           (UCodeSaveGame)             │
+│--------------------------------------│
+│  PlayerScore                          │
+│  KeysCollected                        │
+│  LastLevel                            │
+│  DisplayName                          │
+│  TimePlayedSeconds                    │
+│  SavedItems[]                         │
+│  PotionStates (TMap)                  │
+│  CollectedPickupsByLevel              │
+└──────────────────────┬───────────────┘
+                       │ Serialization
+                       ▼
+┌──────────────────────────────────────┐
+│           DISK STORAGE                │
+│     .sav slot files on disk           │
+│    (PZ_Slot_0, PZ_Slot_1...)           │
+└──────────────────────────────────────┘
 
                 </code></pre>
 
@@ -162,32 +159,104 @@
                     into a single SaveGame object, ensuring version safety, scalability, and predictable serialization.
                     This design mirrors patterns used in production game pipelines.
                 </p>
-
-                <!--   <img src="../assets/save_architecture.png" alt="Diagram of Save System Architecture" class="wide-img">   -->
-
-
             </section>
 
             <!-- =========================================
-                 SLOT DETAILS
+                 SLOT DETAILS (PATCHED)
             ========================================= -->
             <section>
-                <h2>Slot System & Metadata</h2>
+                <h2>Slot System & Runtime Metadata</h2>
+
                 <p>
-                    Each save slot includes more than raw data — it contains presentation-friendly information:
+                    Each save slot is backed by a strongly-typed <code>UCodeSaveGame</code> object that stores both gameplay state
+                    and presentation-ready metadata. Save files are not treated as opaque blobs — they expose structured fields
+                    that allow the UI to display progress, timestamps, and session history without loading full game state.
                 </p>
 
-                <ul>
-                    <li>Custom slot names</li>
-                    <li>Timestamps</li>
-                    <li>Level names</li>
-                    <li>Playtime</li>
-                    <li>World transform</li>
-                </ul>
+                <p>
+                    Metadata is written centrally by the <code>USaveSubsystem</code> to guarantee consistency across save operations
+                    and eliminate the risk of desynchronization between runtime state and disk data.
+                </p>
 
-                <img src="../assets/save_slot_details.png" alt="Save slots showing timestamp and location data" class="wide-img">
+                <div class="pill-row">
+                    <span class="pill">Human-readable Slot Names</span>
+                    <span class="pill">UTC Timestamping</span>
+                    <span class="pill">Session Runtime Tracking</span>
+                    <span class="pill">Inventory Snapshot</span>
+                    <span class="pill">Per-Level Pickup State</span>
+                    <span class="pill">Potion Persistence</span>
+                </div>
 
-                <img src="../assets/placeholder_slot_state.png" alt="Slot rename and overwrite flow placeholder" class="wide-img">
+                <img src="../assets/save_slot_details.png" alt="Save slots showing timestamp and progress summary" class="wide-img">
+
+                <p>
+                    All metadata is stamped deterministically at save-time. Runtime playtime accumulation is measured using
+                    high-resolution platform timers instead of frame-based approximation.
+                </p>
+
+                <pre><code>
+// Meta stamping during save
+Current->LastSavedUtc = FDateTime::UtcNow();
+Current->TimePlayedSeconds = GetSessionSeconds();
+                </code></pre>
+
+                <h3>Slot Summaries (No Full Load Required)</h3>
+
+                <p>
+                    Slots can be inspected using a lightweight summary query that loads only metadata, not live world state.
+                    This allows the UI menu to remain responsive and safe regardless of save size or content depth.
+                </p>
+
+                <pre><code>
+// Read metadata safely without restoring world state
+FSaveSummary Summary = SaveSubsystem->PeekSummary(SlotIndex);
+
+UI->SetSlotName(Summary.DisplayName);
+UI->SetTimestamp(Summary.LastSavedUtc);
+UI->SetProgress(Summary.PlayerScore, Summary.KeysCollected);
+                </code></pre>
+
+                <p>
+                    This summary layer prevents accidental world restoration while enabling rich UI previews of every save slot.
+                </p>
+
+                <h3>Persistent World Data</h3>
+
+                <p>
+                    World persistence is handled at a per-level granularity using GUID-based tracking. Every collectible object
+                    stores a unique identifier when picked up, ensuring destroyed or collected actors do not respawn.
+                </p>
+
+                <pre><code>
+// GUID-based pickup tracking by level
+Current->CollectedPickupsByLevel
+    .FindOrAdd(LevelName)
+    .Ids.Add(PickupId);
+                </code></pre>
+
+                <p>
+                    Potion effects use enum-based serialization rather than string parsing. This provides deterministic restore
+                    behavior and eliminates fragile runtime mapping.
+                </p>
+
+                <img src="../assets/placeholder_slot_state.png" alt="Slot rename and overwrite interface" class="wide-img">
+
+                <h3>Fault-Tolerant Slot Operations</h3>
+
+                <p>
+                    Slot renaming uses an atomic copy-and-delete workflow to ensure data integrity. The original slot remains
+                    intact unless the new slot is written successfully.
+                </p>
+
+                <pre><code>
+// Rename = copy slot + delete original
+CopySlot(FromSlot, ToSlot, OutError);
+DeleteSlot(FromSlot, OutError);
+                </code></pre>
+
+                <p>
+                    This transactional model prevents corruption during write failures and mirrors production safety patterns.
+                </p>
             </section>
 
             <!-- =========================================
@@ -199,13 +268,13 @@
                     All saving and loading is controlled through the Save Manager class:
                 </p>
 
-                    <pre><code>
-                    // Save Trigger
-                    UGameplayStatics::SaveGameToSlot(CurrentSave, SlotName, 0);
+                <pre><code>
+// Save Trigger
+UGameplayStatics::SaveGameToSlot(CurrentSave, SlotName, 0);
 
-                    // Load Trigger
-                    UGameplayStatics::LoadGameFromSlot(SlotName, 0);
-                    </code></pre>
+// Load Trigger
+UGameplayStatics::LoadGameFromSlot(SlotName, 0);
+                </code></pre>
 
                 <img src="../assets/codeSaveGame.png" alt="C++ Save Manager code placeholder" class="wide-img">
 
