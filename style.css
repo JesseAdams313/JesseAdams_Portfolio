@@ -1,5 +1,4 @@
-﻿
-/* style.css START */
+﻿/* style.css START */
 
 /* ================================
    Root & Global Styles
@@ -116,7 +115,7 @@ a {
     }
 
 /* ================================
-   Hero Section
+   Hero Section (Main Site)
    ================================ */
 .hero {
     display: grid;
@@ -135,6 +134,7 @@ a {
     margin: 0 0 14px;
 }
 
+/* Global lead */
 .lead {
     font-size: clamp(16px,2.5vw,20px);
     color: var(--muted);
@@ -149,7 +149,9 @@ a {
     margin-bottom: 14px;
 }
 
-/* ✅ UNIFIED PILL STYLING */
+/* ================================
+   Pills
+   ================================ */
 .quick-tags li,
 .pill-list li,
 .skills-list li,
@@ -164,7 +166,7 @@ a {
     letter-spacing: .2px;
 }
 
-/* ✅ SIZE CONTROL */
+/* ✅ Size control */
 .quick-tags li {
     padding: 6px 12px;
     font-size: .8rem;
@@ -187,7 +189,7 @@ a {
 }
 
 /* ================================
-   Sections & Projects
+   Sections & Cards
    ================================ */
 .section {
     padding: 56px 20px;
@@ -209,7 +211,6 @@ a {
 
     .section-head p {
         color: var(--muted);
-        margin: 0;
     }
 
 .grid.projects {
@@ -258,6 +259,7 @@ a {
     padding: 0 16px 16px;
 }
 
+/* Images */
 .wide-img {
     width: 100%;
     height: auto;
@@ -278,7 +280,6 @@ a {
 
 .about-text p {
     margin: 0 0 12px;
-    color: var(--ink);
 }
 
 .skills-wrap h3 {
@@ -295,7 +296,7 @@ a {
 }
 
 /* ================================
-   Contact & Footer
+   Footer / Contact
    ================================ */
 .contact-cards {
     max-width: 900px;
@@ -307,7 +308,6 @@ a {
 
 .link-card {
     padding: 18px;
-    color: var(--ink);
 }
 
     .link-card h3 {
@@ -315,7 +315,6 @@ a {
     }
 
     .link-card p {
-        margin: 0;
         color: var(--muted);
     }
 
@@ -355,7 +354,7 @@ a {
 }
 
 /* ================================
-   Save/Load Case Study Styling
+   Save/Load Case Study Layout
    ================================ */
 .case-wrapper {
     max-width: 980px;
@@ -364,7 +363,7 @@ a {
 
 .section > .case-wrapper > section {
     max-width: 880px;
-    margin: 0 auto 42px auto;
+    margin: 0 auto 42px;
     padding: 26px 28px;
     background: rgba(255,255,255,0.015);
     border: 1px solid rgba(255,255,255,0.08);
@@ -372,23 +371,11 @@ a {
     box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
-    .section > .case-wrapper > section h2 {
-        margin-top: 0;
-    }
-
     .section > .case-wrapper > section img.wide-img {
         margin-top: 16px;
         border-radius: 10px;
         border: 1px solid rgba(255,255,255,0.06);
     }
-
-    .section > .case-wrapper > section ul {
-        padding-left: 20px;
-    }
-
-        .section > .case-wrapper > section ul li {
-            margin-bottom: 6px;
-        }
 
     .section > .case-wrapper > section pre {
         background: #070b11;
@@ -398,93 +385,72 @@ a {
         border: 1px solid rgba(255,255,255,0.08);
     }
 
-    .section > .case-wrapper > section p {
-        margin-bottom: 12px;
-        color: var(--ink);
-    }
-
 .arch-diagram {
     background: #05080f;
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 14px;
     padding: 22px;
     overflow-x: auto;
-    font-family: "Consolas", "Courier New", monospace;
-    font-size: 0.95rem;
+    font-family: Consolas, monospace;
+    font-size: .95rem;
     line-height: 1.35;
     color: #cfd6df;
-    margin-top: 18px;
 }
-
 
 /* ===============================================
-   FORCE CASE STUDY HERO STYLING (OVERRIDE FIX)
+   ✅ HERO FIX — NO BOX BACKGROUND
    =============================================== */
-
 .section .section-head {
-    position: relative;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 20px 20px 10px !important;
     text-align: center;
-    padding: 48px 28px 42px !important;
-    border-radius: 20px;
-    background: radial-gradient(circle at top, rgba(90,169,255,0.18), transparent 65%), linear-gradient(180deg, rgba(15,22,35,.85), rgba(8,12,18,.95)) !important;
-    border: 1px solid rgba(122,168,255,0.25) !important;
-    box-shadow: 0 0 0 1px rgba(90,169,255,0.18), 0 15px 50px rgba(0,0,0,.6), inset 0 0 30px rgba(90,169,255,.08) !important;
 }
 
+    /* ✅ HERO TITLE — GRADIENT TEXT ONLY */
     .section .section-head h1 {
-        font-weight: 900 !important;
+        font-weight: 900;
         letter-spacing: .6px;
-        background: linear-gradient( 135deg, #cbe2ff 0%, #5aa9ff 40%, #7bf1a8 100% ) !important;
+        background: linear-gradient(135deg,#cbe2ff 0%,#5aa9ff 45%,#7bf1a8 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 25px rgba(90,169,255,.45), 0 0 50px rgba(123,241,168,.15) !important;
+        text-shadow: 0 0 22px rgba(90,169,255,.45), 0 0 48px rgba(123,241,168,.15);
     }
 
-    .section .section-head .lead {
-        max-width: 760px !important;
-        margin: 0 auto !important;
-        font-weight: 500;
-        color: #d4e6ff !important;
-        text-shadow: 0 0 14px rgba(90,169,255,.18) !important;
-    }
-
-    /* glowing divider line */
+    /* ✅ HERO DIVIDER */
     .section .section-head::after {
         content: "";
         display: block;
-        width: 70%;
+        width: 55%;
         height: 1px;
-        margin: 26px auto 0;
+        margin: 22px auto 0;
         background: linear-gradient( to right, transparent, rgba(90,169,255,.6), transparent );
     }
 
 /* ===============================================
-   GRADIENT H2 HEADERS (CASE STUDY ONLY)
+   ✅ GRADIENT H2 HEADERS (CASE STUDY ONLY)
    =============================================== */
-
 .case-wrapper h2 {
-    position: relative;
     font-weight: 800;
     letter-spacing: .4px;
-    background: linear-gradient( 135deg, #cbe2ff 0%, #5aa9ff 45%, #7bf1a8 100% );
+    background: linear-gradient(135deg,#cbe2ff 0%,#5aa9ff 45%,#7bf1a8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 18px rgba(90,169,255,.35), 0 0 30px rgba(123,241,168,.12);
     margin-bottom: 14px;
 }
 
-    /* subtle underline glow */
+    /* underline glow */
     .case-wrapper h2::after {
         content: "";
         display: block;
         height: 2px;
         width: 140px;
         margin-top: 6px;
-        background: linear-gradient( to right, rgba(90,169,255,.7), rgba(123,241,168,.6), transparent );
+        background: linear-gradient(to right, rgba(90,169,255,.7), rgba(123,241,168,.6), transparent );
         border-radius: 2px;
         opacity: .85;
     }
-
-
 
 /* style.css END */
