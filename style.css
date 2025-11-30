@@ -129,10 +129,6 @@ a {
     max-width: 900px;
 }
 
-.hero h1 {
-    color: transparent;
-    -webkit-text-fill-color: inherit;
-}
 
 
 /* Global lead */
@@ -416,10 +412,11 @@ a {
         background: linear-gradient(135deg,#cbe2ff 0%,#5aa9ff 45%,#7bf1a8 100%) !important;
         -webkit-background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
-        color: transparent !important; /* ✅ THIS WAS MISSING */
-
-        text-shadow: 0 0 22px rgba(90,169,255,.45), 0 0 48px rgba(123,241,168,.15);
+        color: transparent !important;
+        /* ✅ Crisp glow instead of blur */
+        text-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 0 12px rgba(90,169,255,.35), 0 0 22px rgba(123,241,168,.12);
     }
+
 
 
     /* ✅ HERO DIVIDER */
