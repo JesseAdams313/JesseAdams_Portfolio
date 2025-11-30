@@ -130,9 +130,10 @@ a {
 }
 
 .hero h1 {
-    font-size: clamp(28px,6vw,56px);
-    margin: 0 0 14px;
+    color: transparent;
+    -webkit-text-fill-color: inherit;
 }
+
 
 /* Global lead */
 .lead {
@@ -412,11 +413,14 @@ a {
     .section .section-head h1 {
         font-weight: 900;
         letter-spacing: .6px;
-        
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        background: linear-gradient(135deg,#cbe2ff 0%,#5aa9ff 45%,#7bf1a8 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        color: transparent !important; /* ✅ THIS WAS MISSING */
+
         text-shadow: 0 0 22px rgba(90,169,255,.45), 0 0 48px rgba(123,241,168,.15);
     }
+
 
     /* ✅ HERO DIVIDER */
     .section .section-head::after {
