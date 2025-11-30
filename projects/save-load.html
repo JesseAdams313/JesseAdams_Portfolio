@@ -65,21 +65,66 @@ OVERVIEW
 </section>
 
 <!-- =========================================
-DESIGN GOALS
+    DESIGN GOALS
 ========================================= -->
 <section>
     <h2>Design Goals</h2>
+
+    <p>
+        This system was built with production constraints in mind. The primary objective was not just to
+        "make saves work," but to design a system that remains reliable as project complexity grows —
+        more levels, more data, and more UI states.
+    </p>
+
+    <div class="pill-row">
+        <span class="pill">Scalable</span>
+        <span class="pill">Maintainable</span>
+        <span class="pill">User-Centered</span>
+        <span class="pill">Performance-Safe</span>
+        <span class="pill">Subsystem-Driven</span>
+    </div>
+
     <ul>
-        <li>Professional-feeling save UI</li>
-        <li>Slot naming, overwriting, and deletion</li>
-        <li>Persistent world data across sessions</li>
-        <li>Metadata visibility and clarity</li>
-        <li>Scalable backend architecture</li>
-        <li>Full C++ implementation</li>
+        <li>
+            <strong>Professional UI experience</strong><br>
+            The system emulates real-world game menus with clear visual hierarchy, strong readability,
+            and meaningful feedback for every action (save, overwrite, delete, load).
+        </li>
+
+        <li>
+            <strong>Slot-based control</strong><br>
+            Each slot behaves like a managed resource — allowing renaming, copying, deletion, and validation
+            while preventing accidental overwrites.
+        </li>
+
+        <li>
+            <strong>Persistent world state</strong><br>
+            Not just player stats — doors, pickups, inventory, potion states, and per-level
+            progression data survive across sessions.
+        </li>
+
+        <li>
+            <strong>Metadata-driven UI</strong><br>
+            Playtime, last-played timestamp, display name, and level name are surfaced
+            to the UI for instant slot clarity.
+        </li>
+
+        <li>
+            <strong>Subsystem architecture</strong><br>
+            All persistence is routed through a GameInstance Subsystem to guarantee a
+            single source of truth and deterministic data flow.
+        </li>
+
+        <li>
+            <strong>C++ first implementation</strong><br>
+            Core systems are written in C++ for predictable performance, memory control,
+            and debugging transparency — with Blueprint exposed only where UI needs it.
+        </li>
     </ul>
 
-    <img src="../assets/Save_Load Menu.png" alt="Design goals placeholder UI" class="wide-img">
+    <img src="../assets/Save_Load Menu.png" alt="Save system UI demonstrating design goals" class="wide-img">
 </section>
+
 
 <!-- =========================================
 ARCHITECTURE
@@ -109,8 +154,8 @@ ARCHITECTURE
 │         (Save Menu Widgets)          │
 │   Slot Buttons • Rename • Overwrite  │
 └──────────────────────┬───────────────┘
-        │ Blueprint Calls
-        ▼
+│ Blueprint Calls
+▼
 ┌──────────────────────────────────────┐
 │        SAVE MANAGER LAYER             │
 │         (USaveSubsystem)              │
@@ -127,9 +172,9 @@ ARCHITECTURE
 │  Maintains Session State              │
 │  Dispatches OnSaved / OnLoaded        │
 └──────────────────────┬───────────────┘
-        │ Unreal Engine
-        │ SaveGame API
-        ▼
+│ Unreal Engine
+│ SaveGame API
+▼
 ┌──────────────────────────────────────┐
 │            DATA LAYER                 │
 │           (UCodeSaveGame)             │
@@ -143,8 +188,8 @@ ARCHITECTURE
 │  PotionStates (TMap)                  │
 │  CollectedPickupsByLevel              │
 └──────────────────────┬───────────────┘
-        │ Serialization
-        ▼
+│ Serialization
+▼
 ┌──────────────────────────────────────┐
 │           DISK STORAGE                │
 │     .sav slot files on disk           │
@@ -187,7 +232,7 @@ SLOT DETAILS (PATCHED)
         <span class="pill">Potion Persistence</span>
     </div>
 
-    <img src="../assets/save_slot_details.png" alt="Save slots showing timestamp and progress summary" class="wide-img">
+    <img src="../assets/save_load_slots.png" alt="Save slots showing timestamp and progress summary" class="wide-img">
 
     <p>
         All metadata is stamped deterministically at save-time. Runtime playtime accumulation is measured using
