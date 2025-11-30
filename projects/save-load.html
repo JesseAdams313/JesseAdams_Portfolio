@@ -10,24 +10,24 @@
     <link rel="stylesheet" href="../style.css" />
 </head>
 
-<body>
-
-    <!-- =========================================
-         CASE STUDY HEADER
-    ========================================= -->
-    <header class="site-header">
-        <a class="brand" href="../index.html">← Back to Portfolio</a>
-    </header>
-
-    <main class="section">
+    <body>
 
         <!-- =========================================
-             CENTERED PAGE WRAPPER
+             CASE STUDY HEADER
         ========================================= -->
-        <div class="case-wrapper">
+        <header class="site-header">
+            <a class="brand" href="../index.html">← Back to Portfolio</a>
+        </header>
+
+        <main class="section">
 
             <!-- =========================================
-                 HERO / INTRO
+                CENTERED PAGE WRAPPER
+            ========================================= -->
+            <div class="case-wrapper">
+
+            <!-- =========================================
+            HERO / INTRO
             ========================================= -->
             <section class="section-head">
                 <h1>Save & Load System — Unreal Engine 5 (C++)</h1>
@@ -42,7 +42,7 @@
             <img src="../assets/save_load_menu2.png" alt="Save Slot UI" class="wide-img">
 
             <!-- =========================================
-                 OVERVIEW
+            OVERVIEW
             ========================================= -->
             <section>
                 <h2>Project Overview</h2>
@@ -65,7 +65,7 @@
             </section>
 
             <!-- =========================================
-                 DESIGN GOALS
+            DESIGN GOALS
             ========================================= -->
             <section>
                 <h2>Design Goals</h2>
@@ -82,7 +82,7 @@
             </section>
 
             <!-- =========================================
-                 ARCHITECTURE
+            ARCHITECTURE
             ========================================= -->
             <section>
                 <h2>System Architecture</h2>
@@ -104,52 +104,52 @@
 
                 <pre class="arch-diagram"><code>
 
-┌──────────────────────────────────────┐
-│                UI LAYER              │
-│         (Save Menu Widgets)          │
-│   Slot Buttons • Rename • Overwrite  │
-└──────────────────────┬───────────────┘
-                       │ Blueprint Calls
-                       ▼
-┌──────────────────────────────────────┐
-│        SAVE MANAGER LAYER             │
-│         (USaveSubsystem)              │
-│--------------------------------------│
-│  SaveToSlotSync()                     │
-│  LoadFromSlotSync()                   │
-│  DeleteSlot()                         │
-│  CopySlot()                           │
-│  RenameSlot()                         │
-│  PeekSummary()                        │
-│  BeginSessionTimer()                  │
-│  MarkPickupCollected()                │
-│--------------------------------------│
-│  Maintains Session State              │
-│  Dispatches OnSaved / OnLoaded        │
-└──────────────────────┬───────────────┘
-                       │ Unreal Engine
-                       │ SaveGame API
-                       ▼
-┌──────────────────────────────────────┐
-│            DATA LAYER                 │
-│           (UCodeSaveGame)             │
-│--------------------------------------│
-│  PlayerScore                          │
-│  KeysCollected                        │
-│  LastLevel                            │
-│  DisplayName                          │
-│  TimePlayedSeconds                    │
-│  SavedItems[]                         │
-│  PotionStates (TMap)                  │
-│  CollectedPickupsByLevel              │
-└──────────────────────┬───────────────┘
-                       │ Serialization
-                       ▼
-┌──────────────────────────────────────┐
-│           DISK STORAGE                │
-│     .sav slot files on disk           │
-│    (PZ_Slot_0, PZ_Slot_1...)           │
-└──────────────────────────────────────┘
+            ┌──────────────────────────────────────┐
+            │                UI LAYER              │
+            │         (Save Menu Widgets)          │
+            │   Slot Buttons • Rename • Overwrite  │
+            └──────────────────────┬───────────────┘
+                        │ Blueprint Calls
+                        ▼
+            ┌──────────────────────────────────────┐
+            │        SAVE MANAGER LAYER             │
+            │         (USaveSubsystem)              │
+            │--------------------------------------│
+            │  SaveToSlotSync()                     │
+            │  LoadFromSlotSync()                   │
+            │  DeleteSlot()                         │
+            │  CopySlot()                           │
+            │  RenameSlot()                         │
+            │  PeekSummary()                        │
+            │  BeginSessionTimer()                  │
+            │  MarkPickupCollected()                │
+            │--------------------------------------│
+            │  Maintains Session State              │
+            │  Dispatches OnSaved / OnLoaded        │
+            └──────────────────────┬───────────────┘
+                        │ Unreal Engine
+                        │ SaveGame API
+                        ▼
+            ┌──────────────────────────────────────┐
+            │            DATA LAYER                 │
+            │           (UCodeSaveGame)             │
+            │--------------------------------------│
+            │  PlayerScore                          │
+            │  KeysCollected                        │
+            │  LastLevel                            │
+            │  DisplayName                          │
+            │  TimePlayedSeconds                    │
+            │  SavedItems[]                         │
+            │  PotionStates (TMap)                  │
+            │  CollectedPickupsByLevel              │
+            └──────────────────────┬───────────────┘
+                        │ Serialization
+                        ▼
+            ┌──────────────────────────────────────┐
+            │           DISK STORAGE                │
+            │     .sav slot files on disk           │
+            │    (PZ_Slot_0, PZ_Slot_1...)           │
+            └──────────────────────────────────────┘
 
                 </code></pre>
 
@@ -162,7 +162,7 @@
             </section>
 
             <!-- =========================================
-                 SLOT DETAILS (PATCHED)
+            SLOT DETAILS (PATCHED)
             ========================================= -->
             <section>
                 <h2>Slot System & Runtime Metadata</h2>
@@ -195,9 +195,9 @@
                 </p>
 
                 <pre><code>
-// Meta stamping during save
-Current->LastSavedUtc = FDateTime::UtcNow();
-Current->TimePlayedSeconds = GetSessionSeconds();
+            // Meta stamping during save
+            Current->LastSavedUtc = FDateTime::UtcNow();
+            Current->TimePlayedSeconds = GetSessionSeconds();
                 </code></pre>
 
                 <h3>Slot Summaries (No Full Load Required)</h3>
@@ -208,12 +208,12 @@ Current->TimePlayedSeconds = GetSessionSeconds();
                 </p>
 
                 <pre><code>
-// Read metadata safely without restoring world state
-FSaveSummary Summary = SaveSubsystem->PeekSummary(SlotIndex);
+            // Read metadata safely without restoring world state
+            FSaveSummary Summary = SaveSubsystem->PeekSummary(SlotIndex);
 
-UI->SetSlotName(Summary.DisplayName);
-UI->SetTimestamp(Summary.LastSavedUtc);
-UI->SetProgress(Summary.PlayerScore, Summary.KeysCollected);
+            UI->SetSlotName(Summary.DisplayName);
+            UI->SetTimestamp(Summary.LastSavedUtc);
+            UI->SetProgress(Summary.PlayerScore, Summary.KeysCollected);
                 </code></pre>
 
                 <p>
@@ -228,10 +228,10 @@ UI->SetProgress(Summary.PlayerScore, Summary.KeysCollected);
                 </p>
 
                 <pre><code>
-// GUID-based pickup tracking by level
-Current->CollectedPickupsByLevel
-    .FindOrAdd(LevelName)
-    .Ids.Add(PickupId);
+            // GUID-based pickup tracking by level
+            Current->CollectedPickupsByLevel
+            .FindOrAdd(LevelName)
+            .Ids.Add(PickupId);
                 </code></pre>
 
                 <p>
@@ -249,9 +249,9 @@ Current->CollectedPickupsByLevel
                 </p>
 
                 <pre><code>
-// Rename = copy slot + delete original
-CopySlot(FromSlot, ToSlot, OutError);
-DeleteSlot(FromSlot, OutError);
+            // Rename = copy slot + delete original
+            CopySlot(FromSlot, ToSlot, OutError);
+            DeleteSlot(FromSlot, OutError);
                 </code></pre>
 
                 <p>
@@ -260,7 +260,7 @@ DeleteSlot(FromSlot, OutError);
             </section>
 
             <!-- =========================================
-                 C++ EXAMPLE
+            C++ EXAMPLE
             ========================================= -->
             <section>
                 <h2>C++ Highlight</h2>
@@ -269,11 +269,11 @@ DeleteSlot(FromSlot, OutError);
                 </p>
 
                 <pre><code>
-// Save Trigger
-UGameplayStatics::SaveGameToSlot(CurrentSave, SlotName, 0);
+            // Save Trigger
+            UGameplayStatics::SaveGameToSlot(CurrentSave, SlotName, 0);
 
-// Load Trigger
-UGameplayStatics::LoadGameFromSlot(SlotName, 0);
+            // Load Trigger
+            UGameplayStatics::LoadGameFromSlot(SlotName, 0);
                 </code></pre>
 
                 <img src="../assets/codeSaveGame.png" alt="C++ Save Manager code placeholder" class="wide-img">
@@ -287,7 +287,7 @@ UGameplayStatics::LoadGameFromSlot(SlotName, 0);
             </section>
 
             <!-- =========================================
-                 UI FOCUS
+            UI FOCUS
             ========================================= -->
             <section>
                 <h2>UI / UX Design</h2>
@@ -303,27 +303,82 @@ UGameplayStatics::LoadGameFromSlot(SlotName, 0);
 
                 <img src="../assets/placeholder_controller_nav.png" alt="Controller navigation placeholder" class="wide-img">
             </section>
-
             <!-- =========================================
-                 WHY C++
+            WHY C++
             ========================================= -->
             <section>
                 <h2>Why C++?</h2>
 
+                <p>
+                    While Unreal Engine enables rapid iteration with Blueprints, this project was intentionally built in C++
+                    to demonstrate production-level engineering practices, deeper engine integration, and long-term scalability.
+                    The Save/Load system was treated as a core engine feature rather than a scripting layer convenience.
+                </p>
+
+                <div class="pill-row">
+                    <span class="pill">Deterministic Behavior</span>
+                    <span class="pill">Lower Runtime Overhead</span>
+                    <span class="pill">Better Error Visibility</span>
+                    <span class="pill">Scalable Code Architecture</span>
+                    <span class="pill">Engine-Level Control</span>
+                </div>
+
                 <img src="../assets/placeholder_blueprint_vs_cpp.png" alt="Blueprint vs C++ comparison placeholder" class="wide-img">
 
-                <ul>
-                    <li>Lower overhead</li>
-                    <li>Stronger debugging tools</li>
-                    <li>Scalability</li>
-                    <li>Cleaner UI binding</li>
-                    <li>Robust architecture</li>
-                </ul>
-            </section>
+                <h3>Core Reasons for a C++ Implementation</h3>
 
+                <ul>
+                    <li>
+                        <strong>Performance & Memory Control</strong><br>
+                        Writing the system in C++ eliminates Blueprint overhead and gives precise control over object lifetime,
+                        memory, and serialization behavior — critical for large save files and complex object graphs.
+                    </li>
+
+                    <li>
+                        <strong>Predictable Serialization</strong><br>
+                        Data layouts, defaults, and version handling are explicitly defined in code. This prevents silent breakage
+                        from refactors and allows for clean data migrations as the project evolves.
+                    </li>
+
+                    <li>
+                        <strong>Debugging & Reliability</strong><br>
+                        Crashes, invalid loads, and corrupted slot detection can be observed directly through call stacks and memory
+                        traces rather than opaque Blueprint failures or silent UI breakage.
+                    </li>
+
+                    <li>
+                        <strong>Scalable Architecture</strong><br>
+                        The Save Subsystem was structured as an engine-style service rather than a monolithic script file. This allows
+                        extension (cloud saves, profiles, checkpoint systems) without rewriting foundational logic.
+                    </li>
+
+                    <li>
+                        <strong>Strong UI Binding</strong><br>
+                        UI logic remains decoupled and data-driven: widgets query structured summaries instead of executing save logic.
+                        This keeps Blueprint usage lean and presentation-focused while C++ owns state and behavior.
+                    </li>
+                </ul>
+
+                <h3>Blueprint vs C++ in This Project</h3>
+
+                <p>
+                    Blueprints remain valuable for UI layout and menu flow, but core game systems must be deterministic, testable,
+                    and extensible. In this implementation:
+                </p>
+
+                <ul>
+                    <li>Blueprints handle presentation and navigation</li>
+                    <li>C++ owns persistence, data integrity, and state restoration</li>
+                    <li>UI depends on data — never logic side-effects</li>
+                </ul>
+
+                <p>
+                    This separation ensures the system remains maintainable as projects scale in complexity and content size.
+                </p>
+            </section>
             <!-- =========================================
-                 TAKEAWAYS
-            ========================================= -->
+                        TAKEAWAYS
+                ========================================= -->
             <section>
                 <h2>What I Learned</h2>
                 <img src="../assets/placeholder_lessons.png" alt="Lessons learned placeholder" class="wide-img">
@@ -336,7 +391,7 @@ UGameplayStatics::LoadGameFromSlot(SlotName, 0);
             </section>
 
             <!-- =========================================
-                 FUTURE FEATURES
+            FUTURE FEATURES
             ========================================= -->
             <section>
                 <h2>Future Improvements</h2>
@@ -351,17 +406,17 @@ UGameplayStatics::LoadGameFromSlot(SlotName, 0);
             </section>
 
             <!-- =========================================
-                 FOOTER
+            FOOTER
             ========================================= -->
             <footer class="site-footer">
                 <a class="btn" href="../index.html">Back to Projects</a>
             </footer>
 
-        </div>
+            </div>
 
-    </main>
+        </main>
 
-</body>
+    </body>
 </html>
 
-<!-- save-load.html END -->
+        <!-- save-load.html END -->
