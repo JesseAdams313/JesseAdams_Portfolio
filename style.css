@@ -412,7 +412,7 @@ a {
     .section .section-head h1 {
         font-weight: 900;
         letter-spacing: .6px;
-        background: linear-gradient(135deg,#cbe2ff 0%,#5aa9ff 45%,#7bf1a8 100%);
+        
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-shadow: 0 0 22px rgba(90,169,255,.45), 0 0 48px rgba(123,241,168,.15);
