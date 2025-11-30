@@ -417,4 +417,50 @@ a {
 }
 
 
+/* ================================
+   Case Study Hero Accent Styling
+   ================================ */
+
+/* Background glow behind the hero title */
+.section-head {
+    position: relative;
+    text-align: center;
+    padding: 42px 24px 36px;
+    border-radius: 18px;
+    background: radial-gradient(circle at top center, rgba(90,169,255,0.15), transparent 60%), linear-gradient(180deg, rgba(15,20,27,.75), rgba(8,12,18,.85));
+    border: 1px solid rgba(122,168,255,0.15);
+    box-shadow: 0 0 0 1px rgba(90,169,255,0.12), 0 20px 45px rgba(0,0,0,.45), inset 0 0 20px rgba(90,169,255,0.06);
+}
+
+    /* Main headline styling */
+    .section-head h1 {
+        margin-bottom: 12px;
+        font-weight: 900;
+        letter-spacing: .5px;
+        background: linear-gradient( 135deg, #bcd7ff 0%, #5aa9ff 35%, #7bf1a8 100% );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 18px rgba(90,169,255,.35), 0 0 32px rgba(123,241,168,.08);
+    }
+
+    /* Subtitle / lead copy enhancement */
+    .section-head .lead {
+        max-width: 760px;
+        margin: 0 auto;
+        font-weight: 500;
+        color: #c5d7f2;
+        text-shadow: 0 0 10px rgba(90,169,255,.08);
+    }
+
+    /* Optional subtle bottom glow divider */
+    .section-head::after {
+        content: "";
+        display: block;
+        height: 1px;
+        margin: 28px auto 0;
+        width: 65%;
+        background: linear-gradient(to right, transparent, rgba(122,168,255,.4), transparent);
+    }
+
+
 /* style.css END */
