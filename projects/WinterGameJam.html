@@ -34,7 +34,7 @@ HERO
 </section>
 
 <!-- HERO / FLOW IMAGE -->
-<img src="../assets/winterbreak_flow.png"
+<img src="../assets/Elf_BreakRoom.png"
      class="wide-img"
      alt="Winter Break Game Jam system flow diagram">
 
@@ -45,7 +45,7 @@ OVERVIEW
     <h2>Project Overview</h2>
 
     <!-- OVERVIEW GAMEPLAY SCREENSHOT -->
-    <img src="../assets/winterbreak_gameplay_overview.png"
+    <img src="../assets/Elf_Sleigh.png"
          class="wide-img"
          alt="Winter Break Game Jam gameplay overview">
 
@@ -72,7 +72,7 @@ MY CONTRIBUTIONS
     <h2>My Contributions</h2>
 
     <!-- WORKSPACE / SETUP IMAGE -->
-    <img src="../assets/winterbreak_workspace_setup.png"
+    <img src="../assets/WinterJam_Miro.png"
          class="wide-img"
          alt="Workspace and testing setup">
 
@@ -110,9 +110,12 @@ ARCHITECTURE
     <h2>System Architecture</h2>
 
     <!-- ARCHITECTURE DIAGRAM / BLUEPRINT GRAPH -->
-    <img src="../assets/winterbreak_architecture.png"
+    <img src="../assets/WarehouseManager.png"
          class="wide-img"
-         alt="GameState and PlayerController architecture">
+         alt="GameState1">
+    <img src="../assets/WarehouseManager2.png"
+         class="wide-img"
+         alt="GameState2">
 
     <p>
         The project is structured around a single authoritative <strong>GameState</strong>,
@@ -157,10 +160,11 @@ STATE-DRIVEN UI & INPUT
     <h2>State-Driven UI & Input Flow</h2>
 
     <!-- UI MODE TOGGLE IMAGE -->
-    <img src="../assets/winterbreak_ui_modes.png"
+  <!--   
+         <img src="../assets/winterbreak_ui_modes.png"
          class="wide-img"
          alt="Gameplay vs Warehouse UI states">
-
+  -->
     <p>
         High-level gameplay flow is controlled by a replicated enum-based game state:
     </p>
@@ -203,10 +207,11 @@ ORDER & SERVER AUTHORITY
     <h2>Order System & Server Authority</h2>
 
     <!-- ORDER UI / PALLET IMAGE -->
-    <img src="../assets/winterbreak_orders.png"
+    <!--
+        <img src="../assets/winterbreak_orders.png"
          class="wide-img"
          alt="Order submission UI and pallet spawning">
-
+    -->
     <p>
         Warehouse orders flow cleanly from UI → PlayerController → GameState
         using server RPCs to enforce authority boundaries.
@@ -220,10 +225,11 @@ LESSONS LEARNED
     <h2>What I Learned</h2>
 
     <!-- DEBUG / LOGGING IMAGE -->
-    <img src="../assets/winterbreak_debugging.png"
+    <!--
+        <img src="../assets/winterbreak_debugging.png"
          class="wide-img"
          alt="Debugging and iteration during the game jam">
-
+    -->
     <ul>
         <li>
             <strong>Game jams expose architecture flaws fast</strong><br>
