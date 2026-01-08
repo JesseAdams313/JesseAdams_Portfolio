@@ -1,0 +1,231 @@
+﻿<!-- WinterGameJam.html START -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Winter Break Game Jam — Gameplay Systems | Jesse Adams</title>
+    <meta name="description" content="Winter Break Game Jam case study focusing on Unreal Engine 5 gameplay systems, C++ PlayerController rebuild, game state architecture, and rapid iteration." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+
+<!-- ================================
+HEADER
+================================ -->
+<header class="site-header">
+    <a class="brand" href="../index.html#projects">← Back to Projects</a>
+</header>
+
+<main class="section">
+
+<div class="case-wrapper">
+
+<!-- ================================
+HERO
+================================ -->
+<section class="section-head">
+    <h1>Winter Break Game Jam — Gameplay Systems & State Architecture</h1>
+    <p class="lead">
+        A rapid-development Unreal Engine 5 project focused on stabilizing gameplay,
+        migrating core logic to C++, and implementing a clean, state-driven architecture
+        under tight game-jam constraints.
+    </p>
+</section>
+
+<!-- Optional image -->
+<img src="../assets/winterbreak_flow.png" class="wide-img" alt="Winter Break Game Jam system flow diagram">
+
+<!-- ================================
+OVERVIEW
+================================ -->
+<section>
+    <h2>Project Overview</h2>
+    <p>
+        This project was developed during a Winter Break Game Jam with a small team.
+        I was responsible for rebuilding broken gameplay systems, establishing a
+        reliable PlayerController architecture, and designing a global game-state
+        system to support both gameplay and warehouse-management modes.
+    </p>
+
+    <ul class="pill-list">
+        <li>Unreal Engine 5</li>
+        <li>C++ Gameplay Systems</li>
+        <li>Blueprint ↔ C++ Integration</li>
+        <li>Game State Architecture</li>
+        <li>Rapid Prototyping</li>
+    </ul>
+</section>
+
+<!-- ================================
+MY CONTRIBUTIONS
+================================ -->
+<section>
+    <h2>My Contributions</h2>
+
+    <ul>
+        <li>
+            <strong>Workspace & testing setup</strong><br>
+            Established a clean development environment with input mappings,
+            test scenes, and debugging hooks to allow rapid iteration.
+        </li>
+
+        <li>
+            <strong>PlayerController rebuild (Blueprint → C++)</strong><br>
+            Converted a broken Blueprint PlayerController into a fully C++-driven
+            system handling input, possession, UI control, and server communication.
+        </li>
+
+        <li>
+            <strong>Global game state system</strong><br>
+            Implemented a replicated, enum-driven GameState with event dispatching
+            to synchronize gameplay flow, UI modes, and input behavior.
+        </li>
+
+        <li>
+            <strong>Scene & mode management</strong><br>
+            Created Blueprint-driven scene and mode logic while enforcing
+            authoritative state changes through C++.
+        </li>
+    </ul>
+</section>
+
+<!-- ================================
+ARCHITECTURE
+================================ -->
+<section>
+    <h2>System Architecture</h2>
+
+    <p>
+        The project is structured around a single authoritative <strong>GameState</strong>,
+        with the <strong>PlayerController</strong> acting as the bridge between input,
+        UI, and gameplay systems.
+    </p>
+
+<pre class="arch-diagram"><code>
+┌─────────────────────────────┐
+│        GameState            │
+│-----------------------------│
+│ Replicated Game Mode Enum   │
+│ OnGameStateChanged Event    │
+│ Order Submission Logic      │
+└──────────────┬──────────────┘
+               │
+     OnGameStateChanged
+               │
+┌──────────────▼──────────────┐
+│      PlayerController       │
+│-----------------------------│
+│ Input Mapping Contexts      │
+│ UI & Cursor Control         │
+│ Pawn / Vehicle Possession  │
+│ Server RPCs                 │
+└──────────────┬──────────────┘
+               │
+┌──────────────▼──────────────┐
+│        Pawn Layer           │
+│-----------------------------│
+│ Elf Character (focus only)  │
+│ Forklift Pawn               │
+│ Pallet Actors               │
+└─────────────────────────────┘
+</code></pre>
+</section>
+
+<!-- ================================
+STATE-DRIVEN UI & INPUT
+================================ -->
+<section>
+    <h2>State-Driven UI & Input Flow</h2>
+
+    <p>
+        High-level gameplay flow is controlled by a replicated enum-based game state:
+    </p>
+
+    <ul>
+        <li><strong>Playing</strong> — Gameplay input active, HUD visible</li>
+        <li><strong>Warehouse Management</strong> — Cursor enabled, management UI active</li>
+        <li><strong>Paused</strong> — Input restricted</li>
+    </ul>
+
+    <p>
+        The PlayerController listens for state changes and updates input mode,
+        cursor visibility, and active widgets automatically.
+    </p>
+</section>
+
+<!-- ================================
+VEHICLE SYSTEM
+================================ -->
+<section>
+    <h2>Forklift Vehicle System</h2>
+
+    <p>
+        The forklift is implemented as a non-physics Pawn fully driven by the
+        PlayerController. Movement and lift behavior are deterministic and tunable.
+    </p>
+
+    <ul>
+        <li>Smooth acceleration and deceleration</li>
+        <li>Brake-before-reverse behavior</li>
+        <li>Speed-scaled steering</li>
+        <li>Lerped rail and fork lift mechanisms</li>
+    </ul>
+</section>
+
+<!-- ================================
+ORDER & SERVER AUTHORITY
+================================ -->
+<section>
+    <h2>Order System & Server Authority</h2>
+
+    <p>
+        Warehouse orders flow cleanly from UI → PlayerController → GameState
+        using server RPCs to enforce authority boundaries.
+    </p>
+
+    <ul>
+        <li>UI selects data only</li>
+        <li>PlayerController validates and forwards requests</li>
+        <li>GameState spawns and assigns pallets server-side</li>
+    </ul>
+</section>
+
+<!-- ================================
+LESSONS LEARNED
+================================ -->
+<section>
+    <h2>What I Learned</h2>
+
+    <ul>
+        <li>
+            <strong>Game jams expose architecture flaws fast</strong><br>
+            Clear ownership and state flow matter more than feature count.
+        </li>
+
+        <li>
+            <strong>PlayerController is a powerful architectural anchor</strong><br>
+            Centralizing input, UI, and possession prevents cascading bugs.
+        </li>
+
+        <li>
+            <strong>Blueprint + C++ works best with strict boundaries</strong><br>
+            Designers move fast, systems remain safe and debuggable.
+        </li>
+    </ul>
+</section>
+
+<!-- ================================
+FOOTER
+================================ -->
+<footer class="site-footer">
+    <a class="btn" href="../index.html#projects">Back to Projects</a>
+</footer>
+
+</div>
+</main>
+
+</body>
+</html>
+<!-- WinterGameJam.html END -->
