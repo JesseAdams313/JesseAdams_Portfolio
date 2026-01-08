@@ -19,7 +19,6 @@ HEADER
 </header>
 
 <main class="section">
-
 <div class="case-wrapper">
 
 <!-- ================================
@@ -34,14 +33,22 @@ HERO
     </p>
 </section>
 
-<!-- Optional image -->
-<img src="../assets/winterbreak_flow.png" class="wide-img" alt="Winter Break Game Jam system flow diagram">
+<!-- HERO / FLOW IMAGE -->
+<img src="../assets/winterbreak_flow.png"
+     class="wide-img"
+     alt="Winter Break Game Jam system flow diagram">
 
 <!-- ================================
 OVERVIEW
 ================================ -->
 <section>
     <h2>Project Overview</h2>
+
+    <!-- OVERVIEW GAMEPLAY SCREENSHOT -->
+    <img src="../assets/winterbreak_gameplay_overview.png"
+         class="wide-img"
+         alt="Winter Break Game Jam gameplay overview">
+
     <p>
         This project was developed during a Winter Break Game Jam with a small team.
         I was responsible for rebuilding broken gameplay systems, establishing a
@@ -63,6 +70,11 @@ MY CONTRIBUTIONS
 ================================ -->
 <section>
     <h2>My Contributions</h2>
+
+    <!-- WORKSPACE / SETUP IMAGE -->
+    <img src="../assets/winterbreak_workspace_setup.png"
+         class="wide-img"
+         alt="Workspace and testing setup">
 
     <ul>
         <li>
@@ -96,6 +108,11 @@ ARCHITECTURE
 ================================ -->
 <section>
     <h2>System Architecture</h2>
+
+    <!-- ARCHITECTURE DIAGRAM / BLUEPRINT GRAPH -->
+    <img src="../assets/winterbreak_architecture.png"
+         class="wide-img"
+         alt="GameState and PlayerController architecture">
 
     <p>
         The project is structured around a single authoritative <strong>GameState</strong>,
@@ -139,6 +156,11 @@ STATE-DRIVEN UI & INPUT
 <section>
     <h2>State-Driven UI & Input Flow</h2>
 
+    <!-- UI MODE TOGGLE IMAGE -->
+    <img src="../assets/winterbreak_ui_modes.png"
+         class="wide-img"
+         alt="Gameplay vs Warehouse UI states">
+
     <p>
         High-level gameplay flow is controlled by a replicated enum-based game state:
     </p>
@@ -148,11 +170,6 @@ STATE-DRIVEN UI & INPUT
         <li><strong>Warehouse Management</strong> — Cursor enabled, management UI active</li>
         <li><strong>Paused</strong> — Input restricted</li>
     </ul>
-
-    <p>
-        The PlayerController listens for state changes and updates input mode,
-        cursor visibility, and active widgets automatically.
-    </p>
 </section>
 
 <!-- ================================
@@ -160,6 +177,11 @@ VEHICLE SYSTEM
 ================================ -->
 <section>
     <h2>Forklift Vehicle System</h2>
+
+    <!-- FORKLIFT POSSESSION IMAGE -->
+    <img src="../assets/winterbreak_forklift.png"
+         class="wide-img"
+         alt="Forklift possession and movement system">
 
     <p>
         The forklift is implemented as a non-physics Pawn fully driven by the
@@ -180,16 +202,15 @@ ORDER & SERVER AUTHORITY
 <section>
     <h2>Order System & Server Authority</h2>
 
+    <!-- ORDER UI / PALLET IMAGE -->
+    <img src="../assets/winterbreak_orders.png"
+         class="wide-img"
+         alt="Order submission UI and pallet spawning">
+
     <p>
         Warehouse orders flow cleanly from UI → PlayerController → GameState
         using server RPCs to enforce authority boundaries.
     </p>
-
-    <ul>
-        <li>UI selects data only</li>
-        <li>PlayerController validates and forwards requests</li>
-        <li>GameState spawns and assigns pallets server-side</li>
-    </ul>
 </section>
 
 <!-- ================================
@@ -197,6 +218,11 @@ LESSONS LEARNED
 ================================ -->
 <section>
     <h2>What I Learned</h2>
+
+    <!-- DEBUG / LOGGING IMAGE -->
+    <img src="../assets/winterbreak_debugging.png"
+         class="wide-img"
+         alt="Debugging and iteration during the game jam">
 
     <ul>
         <li>
